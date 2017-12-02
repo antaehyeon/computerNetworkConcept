@@ -80,19 +80,50 @@ Console Port : configuration 접속포트
 
 ## 인터넷 네트워크 레이어
 ![4-29. The Internet network layer.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-29.%20The%20Internet%20network%20layer.png)
-호스트, 라우터 네트워크 레이어 기능
+* 호스트, 라우터 네트워크 레이어 기능
 
-라우터가 라우팅을 하면서 사용하는 알고리즘
-Routing Information Protocol, RIP
-Open Shortest Path First, OSPF
-Border Gateway Protocol, BGP
+* 라우터가 라우팅을 하면서 사용하는 알고리즘
+  * Routing Information Protocol, RIP
+  * Open Shortest Path First, OSPF
+  * Border Gateway Protocol, BGP
 
 ## IP 데이터그램(datagram) 포맷 (기말 2문제)
 ![4-30. IP datagram format](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-30.%20IP%20datagram%20format.png)
 
-TTL : 최대 남은 홉 수 (각 라우터에서 감소, 128 - 127 - 126 ... 1)
-upper layer : 데이터를 위로 전달(payload)하는 상위 계층 프로토콜
-for fragmentation/reassembly (분열/재조립을 위한) : 4Byte = 1Word
+* TTL : 최대 남은 홉 수 (각 라우터에서 감소, 128 - 127 - 126 ... 1)
+* upper layer : 데이터를 위로 전달(payload)하는 상위 계층 프로토콜
+* for fragmentation/reassembly (분열/재조립을 위한) : 4Byte = 1Word
+
+## IP fragmentation, reassembly
+![4-31. IP fragmentation, reassembly](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-31.%20IP%20fragmentation,%20reassembly.gif)
+
+* 네트워크 링크에는 MTU(maxtransfer size)가 있으며 최대의 링크 레벨, 프라임 레벨 존재
+  * 다양한 링크 유형, 다양한 MTU
+* 그물망 내에 큰 IP데이터그램이 나뉘어져 있음
+  * 데이터그램은 여러개의 데이터그램
+  * 최종 목적지에서만 "재제출" 됨
+  * 관련된 조각을 식별하기 위해 사용되는 IP헤더 비트
+* fragmentation
+  * in : 하나의 큰 Datagram
+  * out : 3개의 작은 datagram
+    해당 datagram에 각각의 헤더가 추가됨
+
+## IP fragmentation, reassembly
+![4-32. IP fragmentation, reassembly.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-32.%20IP%20fragmentation,%20reassembly.png)
+
+## IP addressing: introduction
+![4-34. IP addressing.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-34.%20IP%20addressing.png)
+  * IP address
+    32-bit 호스트 식별자, 라우터 인터페이스
+  * interface
+    호스트/라우터와 물리적 링크 간 연결
+      * 라우터는 일반적으로 여러개의 인터페이스를 가지고 있음
+      * 일반적으로 호스트는 하나 또는 두개의 인터페이스가 있음 (예: 유선 이더넷, 무선 802.11i)
+  * 각 인터페이스와 관련된 IP주소
+
+
+
+
 
 
 
