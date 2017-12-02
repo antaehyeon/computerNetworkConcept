@@ -16,7 +16,7 @@
 - 인스턴스화, 인터넷에서 구현  
 
 #### 네트워크 레이어
-![네트워크 레이어]()
+![네트워크 레이어](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-4.%20Network%20Layer.gif)
 - 전송 구간에서 수신 호스트로의 전송 구간 (transport segment from sending to receiving host)
 - 송신측에서 세그먼트를 데이터그램으로 캡슐화
 - 수신측에서 세그먼트를 전송계층에 전달
@@ -40,13 +40,22 @@
     * **지역**별, 라우터별 기능
     * 라우터 입력 포트에 도착하는 데이터그램이 라우터 출력 포트로 전달되는 방법을 결정
     * 포워딩(forwarding) 기능
-    ![포워딩 기능]()
+    ![포워딩 기능](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-5.%20forwarding%20function.png)
 2. Control Plane
     * 네트워크 **전체** 논리
     * 출발지 호스트에서 목적지 호스트까지의 end-end경로를 따라 라우터간 Datagram이 라우팅 되는 방식을 결정
     * 이중 제어 방식(two control-plane approaches)
       * 전통적인 라우팅 알고리즘 : 라우터에서 구현
       * 소프트웨어 정의 네트워킹(Software-defined networking, SDN) : (원격)서버에서 구현
+
+
+#### 라우터별 제어 계획(Per-router control plane)
+![Per-router control plane]()
+각 라우터의 개별 라우팅 알고리즘 구성요소는 Control Plane에서 상호작용
+
+#### 논리적으로 중앙 집중화 된 Control Plane
+![Logically centeralized control plane]()
+고유한(일반적으로 원격) 컨트롤러가 로컬 제어 에이전트(control agents, CAs)와 상호작용
 
 
 ![네트워크 계층](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/network%20layer.png)
