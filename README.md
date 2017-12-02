@@ -7,7 +7,7 @@
 : 네트워크 계층이 호스트 사이의 통신 서비스를 어떻게 통과하는지
 
 #### 4-1. 네트워크 개층 개요
-![네트워크 계층](/image/network layer.png "네트워크 계층")
+![네트워크 계층](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/network%20layer.png)
 
 
 
