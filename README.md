@@ -64,12 +64,37 @@
 교수님이 중요하지 않다고 한 부분은 제외되었습니다
 
 ### 이더넷 케이블 (UTP) - 어떻게 만드는가 (기말5점)
-![4-22. Ethernet Cable (UTP)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-22.%20Ethernet%20Cable%20(UTP))
+![4-22. Ethernet Cable (UTP)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-22.%20Ethernet%20Cable%20(UTP).png)
 해당 라인 순서와 cross cable에 대한부분 숙지
 
 ### 라우터 외부 연결
-![4-25. Router external connections](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-25.%20Router%20external%20connections)
+![4-25. Router external connections](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-25.%20Router%20external%20connections.png)
 Console Port : configuration 접속포트
+
+## 4-3. IP : Internet Protocl
+1. datagram 포맷
+2. 세분화(fragmentation)
+3. IPv4 주소지정(addressing)
+4. 네트워크 주소 변환
+5. IPv6
+
+## 인터넷 네트워크 레이어
+![4-29. The Internet network layer.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-29.%20The%20Internet%20network%20layer.png)
+호스트, 라우터 네트워크 레이어 기능
+
+라우터가 라우팅을 하면서 사용하는 알고리즘
+Routing Information Protocol, RIP
+Open Shortest Path First, OSPF
+Border Gateway Protocol, BGP
+
+## IP 데이터그램(datagram) 포맷 (기말 2문제)
+![4-30. IP datagram format](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-30.%20IP%20datagram%20format.png)
+
+TTL : 최대 남은 홉 수 (각 라우터에서 감소, 128 - 127 - 126 ... 1)
+upper layer : 데이터를 위로 전달(payload)하는 상위 계층 프로토콜
+for fragmentation/reassembly (분열/재조립을 위한) : 4Byte = 1Word
+
+
 
 
 
