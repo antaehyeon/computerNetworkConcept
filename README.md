@@ -121,6 +121,59 @@ Console Port : configuration 접속포트
       * 일반적으로 호스트는 하나 또는 두개의 인터페이스가 있음 (예: 유선 이더넷, 무선 802.11i)
   * 각 인터페이스와 관련된 IP주소
 
+  * Q. 인터페이스가 실제로 어떻게 연결되어 있습니까?
+  * A. 챕터5와 6에서 배움
+  * For now. 하나의 인터페이스가 다른 인터페이스에 연결되어 있는지 걱정할 필요가 없습니다 (방해 라우터가 없음)
+
+  * 각 컴퓨터는 스위치 또는 무선 WiFi에 연결될 수 있음
+      * 이더넷 스위치로 연결된 유선 이더넷 인터페이스
+      * WiFi 기지국에 연결된 무선 WiFi 인터페이스
+
+## Subnet
+  * IP address
+    * 서브넷 파트 - 높은 순서 비트
+    * 호스트 파트 - 낮은 순서 비트
+  * 서브넷은 무엇인가요?
+    * IP주소의 동일한 서브넷을 가진 장치 인터페이스
+    * **라우터를 끼지 않고** 물리적으로 서로 연결할 수 있음
+  * receipe
+  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets)
+    * 서브넷을 결정하고 호스트 또는 라우터에서 각 인터페이스를 분리하고 격리된 네트워크 섬을 만듬
+    * 격리 된 각 네트워크를 **서브넷**이라고 함
+    * **ipconfig**
+    * /24 = 서브넷 용도로 사용한다
+      11111111 11111111 111111111 00000000
+    * subnet mask: /24
+      항상 24비트는 아님, 조절할 수 있음
+
+    ![4-38. Subnet.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-38.%20Subnet.png)
+      * 해당 서브넷은 6개로 구성
+      * 가운데의 3개의 선은 별도의 Subnet으로 구성됨
+
+  ## Class A, B, C, D, and E IP Address
+  ![4-39. Class A, B, C, D, and E IP Address.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-39.%20Class%20A,%20B,%20C,%20D,%20and%20E%20IP%20Address.png)
+  * 해당 IP Address를 통해서 각 IP의 Class를 파악할 수 있음
+  * 클래스 D 주소는 멀티캐스트 그룹에 사용되므로, 네트워크 및 호스트 주소를 분리하기 위해 octets나 bit를 할당할 필요가 없음
+  * 클래스 E 주소는 연구용으로만 사용
+
+  ## IPv4 Addressing (Class)
+  ![4-40. IPv4 Addressing (Class)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-40.%20IPv4%20Addressing%20(Class))
+  * Class A : 16,777,216
+  * Class B : 65,535
+  * Class C : 254
+  * 127.x.x.x 주소 범위는 루프백 주소로 예약되어 있음
+  * 테스트 및 진단 목적으로 사용
+
+  ## Reserved IP Addressing
+  ![4-41. Reserved IP Addresses](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-41.%20Reserved%20IP%20Addresses)
+  * 특정 호스트 주소는 예약되어 있으며 네트워크 장치에 할당 할 수 없음
+  * 모든 호스트 비트 위치에 2진 O (binary Os)가 있는 IP주소는 네트워크 주소용으로 예약되어 있음
+  * 모든 호스트 비트 위치에 바이너리가 있는 IP주소는 네트워크 주소용으로 예약되어 있음
+
+
+
+
+
 
 
 
