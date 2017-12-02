@@ -3,6 +3,15 @@
 
 ### 4단원. 네트워크 계층(The Network Layer: Data Plane)
 
+목표
+: 네트워크 계층이 호스트 사이의 통신 서비스를 어떻게 통과하는지
+
+#### 4-1. 네트워크 개층 개요
+![네트워크 계층](/image/network layer.png "네트워크 계층")
+
+
+
+
 ### 5단원. 네트워크 계층: 제어 평면 (The Network Layer: Control Plane)
 
 ### 6단원. 링크 계층: 링크, 접속망, 랜(The Link Layer and LANs)
