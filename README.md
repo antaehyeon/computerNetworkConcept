@@ -137,7 +137,7 @@ Console Port : configuration 접속포트
     * IP주소의 동일한 서브넷을 가진 장치 인터페이스
     * **라우터를 끼지 않고** 물리적으로 서로 연결할 수 있음
   * receipe
-  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets)
+  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets.png)
     * 서브넷을 결정하고 호스트 또는 라우터에서 각 인터페이스를 분리하고 격리된 네트워크 섬을 만듬
     * 격리 된 각 네트워크를 **서브넷**이라고 함
     * **ipconfig**
@@ -157,7 +157,7 @@ Console Port : configuration 접속포트
   * 클래스 E 주소는 연구용으로만 사용
 
   ## IPv4 Addressing (Class)
-  ![4-40. IPv4 Addressing (Class)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-40.%20IPv4%20Addressing%20(Class))
+  ![4-40. IPv4 Addressing (Class)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-40.%20IPv4%20Addressing%20(Class).png)
   * Class A : 16,777,216
   * Class B : 65,535
   * Class C : 254
@@ -165,13 +165,13 @@ Console Port : configuration 접속포트
   * 테스트 및 진단 목적으로 사용
 
   ## Reserved IP Addressing
-  ![4-41. Reserved IP Addresses](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-41.%20Reserved%20IP%20Addresses)
+  ![4-41. Reserved IP Addresses](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-41.%20Reserved%20IP%20Addresses.png)
   * 특정 호스트 주소는 예약되어 있으며 네트워크 장치에 할당 할 수 없음
   * 모든 호스트 비트 위치에 2진 O (binary Os)가 있는 IP주소는 네트워크 주소용으로 예약되어 있음
   * 모든 호스트 비트 위치에 바이너리가 있는 IP주소는 네트워크 주소용으로 예약되어 있음
 
   ## Private IP Addresses (기말출제 1문제)
-  ![4-42. Private IP Addresses](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-42.%20Private%20IP%20Addresses)
+  ![4-42. Private IP Addresses](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-42.%20Private%20IP%20Addresses.png)
   * 공인 IP주소가 글로벌하고 표준화되어 있으므로 공용 네트워크에 연결하는 2대의 컴퓨터가 동일한 IP주소를 가질 수는 없음
   * 그러나, 인터넷에 연결되지 않은 개인 네트워크는 사설 네트워크 내의 각 호스트가 고유한 경우 호스트 주소를 사용할 수 있음
   * RFC 1918은 개인, 내부용으로 3개의 IP주소 블럭을 따로 설정
