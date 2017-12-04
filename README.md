@@ -137,7 +137,7 @@ Console Port : configuration 접속포트
     * IP주소의 동일한 서브넷을 가진 장치 인터페이스
     * **라우터를 끼지 않고** 물리적으로 서로 연결할 수 있음
   * receipe
-  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets)
+  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets.png)
     * 서브넷을 결정하고 호스트 또는 라우터에서 각 인터페이스를 분리하고 격리된 네트워크 섬을 만듬
     * 격리 된 각 네트워크를 **서브넷**이라고 함
     * **ipconfig**
@@ -157,7 +157,7 @@ Console Port : configuration 접속포트
   * 클래스 E 주소는 연구용으로만 사용
 
   ## IPv4 Addressing (Class)
-  ![4-40. IPv4 Addressing (Class)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-40.%20IPv4%20Addressing%20(Class))
+  ![4-40. IPv4 Addressing (Class)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-40.%20IPv4%20Addressing%20(Class).png)
   * Class A : 16,777,216
   * Class B : 65,535
   * Class C : 254
@@ -204,10 +204,34 @@ Console Port : configuration 접속포트
     * DHCP서버가 **DHCP 제공, offer**메시지로 응답
     * 호스트가 **DHCP 요청, request**메세지에 IP주소를 담아 응답
     * DHCP서버가 **DHCP 응답, ack**메시지에 담아 주소를 보냄
+  * DHCP순서에 대한 것을 물어볼 수 있음
+  * 왜 요청하고 ack를 보내는가
+  * DHCP가 서버를 여러개 가질 수 있음
+  * 그러면 IP를 여러개 받음
+  * request가 왜 의미를 가지는지
 
+## DHCP client-server scenario
+![4-46. DHCP client-server scenario](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-46.%20DHCP%20client-server%20scenario.png)
 
+![4-47. DHCP client-server scenario.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-47.%20DHCP%20client-server%20scenario.gif)
 
+## DHCP: 더 많은 IP주소
+  * DHCP는 서브넷에 할당된 IP주소 이상을 반환할 수 있음
+    * 클라이언트의 첫번째 홉 라우터 주소
+    * DNS서버의 이름 및 IP주소
+    * 네트워크 마스크(주소의 네트워크 대 호스트 부분)
 
+## DHCP: 예시
+  ![4-50. DHCP example.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-50.%20DHCP%20example.gif)
+  * 노트북을 연결하려면 IP주소, 첫번째 홉 라우터 주소, DNS 서버주소를 입력하고 DHCP를 사용함
+  * UDP 에서의 DHCP 캡슐화 요청
+  * IP 에서의 캡슐화
+  * 802.11 Ethernet 에서의 캡슐화
+  * DHCP서버를 실행하는 라우터에서 수신된 LAN상의 이더넷 프레임 브로드캐스트(목적지 : FFFF FFFF FFFF)
+  * IP 역 다중화 된 이더넷, DHCP로 UDP역 다중화된 이더넷
+  * DCP 서버는 클라이언트의 IP주소, 클라이언트의 첫번째 홉 라우터의 IP주소, DNS서버의 이름 및 IP주소를 포함하는 DHCP ACK를 공식화
+  * DHCP 서버의 캡슐화, 클라이언트에 전달 된 프레임, 클라이언트에서 DHCP로의 최대화
+  * 클라이언트는 IP주소, DNS서버의 이름 및 IP주소, 라우터 첫번째 홉의 IP주소를 알 수 있음
 
 
 
