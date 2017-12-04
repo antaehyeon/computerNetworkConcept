@@ -137,7 +137,7 @@ Console Port : configuration 접속포트
     * IP주소의 동일한 서브넷을 가진 장치 인터페이스
     * **라우터를 끼지 않고** 물리적으로 서로 연결할 수 있음
   * receipe
-  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets.png)
+  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets)
     * 서브넷을 결정하고 호스트 또는 라우터에서 각 인터페이스를 분리하고 격리된 네트워크 섬을 만듬
     * 격리 된 각 네트워크를 **서브넷**이라고 함
     * **ipconfig**
@@ -157,7 +157,7 @@ Console Port : configuration 접속포트
   * 클래스 E 주소는 연구용으로만 사용
 
   ## IPv4 Addressing (Class)
-  ![4-40. IPv4 Addressing (Class)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-40.%20IPv4%20Addressing%20(Class).png)
+  ![4-40. IPv4 Addressing (Class)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-40.%20IPv4%20Addressing%20(Class))
   * Class A : 16,777,216
   * Class B : 65,535
   * Class C : 254
@@ -179,8 +179,31 @@ Console Port : configuration 접속포트
   * A Class는 어떤것이 사설주소인가? 알아야 됨!
   * 해당 그림은 표준으로 세워놓은 IP주소
 
+  ## IP addressing : CIDR
+  ![4-43. IP addressing CIDR.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-43.%20IP%20addressing%20CIDR.png)
+  * CIDR : Classless InterDomain Routing - 클래스 없는 InterDomain 라우팅
+    * 임의의 길이의 서브넷 부분 주소
+    * 주소 형식 : a,b,c,d/x (여기서 x는 주소의 서브넷 부분에 있는 # 비트)
+  * 해당 /숫자 에 대한 표기 잘 알아두기
+  * 위의 사진은 23비트 [111111111][11111111][111111110][000000000] = 255.255.254.0
 
 
+## IP address : 어떻게 얻는가
+  * 호스트에서 IP주소를 가져오는 방법은 무엇입니까?
+    * 파일에서 시스템 관리자가 하드코딩
+    * DHCP : Dynamic Host configuration Protocol : 서버에서 동적으로 주소 가져오기 (plug-and-play)
+      * 자동으로 설정을 했을 때 DHCP를 통해서 서버로부터 받아서 Plug-and-play방식으로 설정
+
+## DHCP: Dynamic Host Configuration Protocol
+  * 목표 : 호스트가 네트워크에 가입할 때 네트워크 서버에서 IP주소를 동적으로 가져올 수 있음
+    * 사용중인 주소로 임대 계약을 갱신할 수 있음
+    * 주소를 재사용 할 수 있음(예: 연결된 상태일 때만 유지)
+    * 네트워크 가입을 원하는 모바일 사용자 지원(보다 빠르게)
+  * DHCP 개요 (개중요-DHCP 순서에 대한것을 물어볼 수 있음)
+    * 호스트에서 **DHCP 검색, discover**메세지를 선택(옵션)
+    * DHCP서버가 **DHCP 제공, offer**메시지로 응답
+    * 호스트가 **DHCP 요청, request**메세지에 IP주소를 담아 응답
+    * DHCP서버가 **DHCP 응답, ack**메시지에 담아 주소를 보냄
 
 
 
