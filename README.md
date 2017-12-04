@@ -233,6 +233,29 @@ Console Port : configuration 접속포트
   * DHCP 서버의 캡슐화, 클라이언트에 전달 된 프레임, 클라이언트에서 DHCP로의 최대화
   * 클라이언트는 IP주소, DNS서버의 이름 및 IP주소, 라우터 첫번째 홉의 IP주소를 알 수 있음
 
+## IP 주소 : 어떻게 얻을 수 있는가? (연습문제 중요)
+![4-51. ip addresses how to get one.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-51.%20ip%20addresses%20how%20to%20get%20one.png)
+  * 네트워크가 IP주소의 서브넷 부분을 가져오는 방법은 무엇입니까?
+  * 공급자 ISP주소의 일부를 할당
+  * 어떤 Class인지 (A 클래스, B 클래스)
+  * 3구역을 보면서 확인함 (각자 나눠주는 부분이 달라짐)
+  * 2^9 bit 컴퓨터들에게 assign 할 수 있는 부분
+  * ISP's block 11001000 00010111 00010000 00000000 200.23.16.0/20 수정
+
+## IP addressing : 마지막 단어
+  * ISP는 어떻게 주소를 차단하는가?
+  * ICANN : Internet Corporation for Assigned
+    * 주소 할당
+    * DNS 관리
+    * 도메인 이름 할당, 분쟁 해결
+
+## NAT : network address translation
+![4-55. NAT.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-55.%20NAT.png)
+
+* 로컬 네트워크를 떠나는 모든 데이터그램에는 동일한 단일 소스 NAT IP주소가 있음 (138.76.29.7, 다른 소스 포트번호)
+* 해당 네트워크에서 출발지 또는 목적지가 있는 데이터그램은 출발지,도착지에 대해서 10.0.0/24 주소를 가짐
+* Public(왼쪽) - Private(오른쪽) 전환을 NAT가 담당
+* 맨 오른쪽 (10.0.0.1~3) 은 Private 주소
 
 
 
