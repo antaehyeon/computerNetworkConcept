@@ -200,10 +200,10 @@ Console Port : configuration 접속포트
     * 주소를 재사용 할 수 있음(예: 연결된 상태일 때만 유지)
     * 네트워크 가입을 원하는 모바일 사용자 지원(보다 빠르게)
   * DHCP 개요 (개중요-DHCP 순서에 대한것을 물어볼 수 있음)
-    * 호스트에서 **DHCP 검색, discover**메세지를 선택(옵션)
-    * DHCP서버가 **DHCP 제공, offer**메시지로 응답
-    * 호스트가 **DHCP 요청, request**메세지에 IP주소를 담아 응답
-    * DHCP서버가 **DHCP 응답, ack**메시지에 담아 주소를 보냄
+    * 호스트에서 DHCP 검색, discover메세지를 선택(옵션)
+    * DHCP서버가 DHCP 제공, offer메시지로 응답
+    * 호스트가 DHCP 요청, request메세지에 IP주소를 담아 응답
+    * DHCP서버가 DHCP 응답, ack메시지에 담아 주소를 보냄
   * DHCP순서에 대한 것을 물어볼 수 있음
   * 왜 요청하고 ack를 보내는가
   * DHCP가 서버를 여러개 가질 수 있음
@@ -266,7 +266,7 @@ Console Port : configuration 접속포트
   * 외부 IP가 변경되어도, 내부의 Private IP는 변경되지 않음
 
 * implementation : NAT 라우터는 반드시
-  * 나가는 datagram : 나가는 데이터그램의 (출발지 IP주소, 포트번호)를 (NAT IP 주소, 새 포트번호)로 바꾸면 원격 클라이언트/서버는 (NAT IP주소, 새 포트번호)를 목적지주소로 사용하여 응답
+  * 나가는 datagram : 나가는 데이터그램의 (출발지 IP주소, 포트번호)를 (NAT IP 주소, 새 포트번호)로 바꾸면 원격 클라이언트/서버는 (NAT IP주소, 새 포트번호)를 목적지주소로 사용하여 응답                                                                                                                                                                     
   * 모든 (출발지 IP주소, 포트번호#)에서 (NAT IP주소, 새 포트번호) 변환 쌍(NAT 변환표에서)을 기억
   * 들어오는 데이터그램 : 모든 수신 데이터그램의 목적지 필드를 NAT테이블에 상응하는(출발지 IP주소, 포트번호)로 대체(NAT IP주소, 새 포트번호)
 
@@ -281,6 +281,38 @@ Console Port : configuration 접속포트
   * 종단간 논쟁을 위반
     * 앱 디자이너가 (예: P2P 애플리케이션) NAT가능성을 고려
   * NAT traversal : 클라이언트가 NAT 뒷단 서버에 연결하려면 어떻게 해야합니까?
+
+  ## IPv6 : motivation(동기, 자극, 유도)
+  * 초기 동기 부여 : 32비트 주소공간이 곧 할당될 예정
+  * 추가 동기
+    * 헤더 포맷이 빠르게 처리/포워딩 되는데 도움
+    * QoS를 용이하게 하기위한 변경
+
+  * IPv6 데이터그램 형식
+    * 40 바이트 헤더 고정길이
+    * 파편화 불가
+
+  * IPv6 데이터그램 포맷 (매우중요-기말1문제)
+  ![4-62.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-62.png)
+    * 우선순위 : Flow에서 데이터 그램간의 우선순위 식별
+    * 흐름 레이블 : 동일한 Flow의 데이터 그램 식별
+    * 다음 헤더 : 데이터의 상위 계층 프로토콜 식별
+    * source, destination address가 128bit 인 부분 (32byte = 8/8/8/8)
+
+  * IPv4의 기타 변경 사항
+    * checksum : 각 홉(hop)에서 처리시간을 줄이기 위해 완전히 제거
+    * 옵션 : 허용되었지만 헤더 외부 및 다음 헤더필드로 표시
+    * ICMPv6 : 새로운 버전의 ICMPv6
+      * 추가 메세지 유형 (예. 너무 큰 패킷)
+        * 패킷이 너무 큰 경우 ICMP프로토콜을 거쳐 사이즈를 조절 후 재전송
+      * 멀티캐스트 그룹관리 기능
+
+    * IPv4에서 IPv6로 전환
+      * no 'Flag days'
+      * 네트워크가 IPv4 및 IPv6 혼합 라우터와 어떻게 작동합니까?
+    * **터널링(tunneling)** : IPv4 라우터간에 IPv4 데이터 그램에서 페이로드로 전달되는 IPv6 데이터 그램
+
+
 
 
 ### 5단원. 네트워크 계층: 제어 평면 (The Network Layer: Control Plane)
