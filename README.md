@@ -300,6 +300,7 @@ Console Port : configuration 접속포트
     * source, destination address가 128bit 인 부분 (32byte = 8/8/8/8)
 
   * IPv4의 기타 변경 사항
+    ![4-64.gif][https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-64.gif]
     * checksum : 각 홉(hop)에서 처리시간을 줄이기 위해 완전히 제거
     * 옵션 : 허용되었지만 헤더 외부 및 다음 헤더필드로 표시
     * ICMPv6 : 새로운 버전의 ICMPv6
@@ -311,6 +312,16 @@ Console Port : configuration 접속포트
       * no 'Flag days'
       * 네트워크가 IPv4 및 IPv6 혼합 라우터와 어떻게 작동합니까?
     * **터널링(tunneling)** : IPv4 라우터간에 IPv4 데이터 그램에서 페이로드로 전달되는 IPv6 데이터 그램
+
+  ## 터널링
+  ![4-66.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-66.gif)
+
+  ## IPv6 : 양자(adoption)
+  * 구글 : 8%의 고객이 IPv6를 통해 서비스에 액세스
+  * NIST : 모든 미국 정부 도메인 중 1/3은 IPv6 가능
+  * 장기간 시간 동안 배치 및 사용
+    * 20년간 애플리케이션의 수준 변화 (Facebook, skype, 스트리밍 미디어 등)
+
 
 
 
