@@ -300,7 +300,7 @@ Console Port : configuration 접속포트
     * source, destination address가 128bit 인 부분 (32byte = 8/8/8/8)
 
   * IPv4의 기타 변경 사항
-    ![4-64.gif][https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-64.gif]
+    ![4-64.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-64.gif)
     * checksum : 각 홉(hop)에서 처리시간을 줄이기 위해 완전히 제거
     * 옵션 : 허용되었지만 헤더 외부 및 다음 헤더필드로 표시
     * ICMPv6 : 새로운 버전의 ICMPv6
@@ -322,7 +322,59 @@ Console Port : configuration 접속포트
   * 장기간 시간 동안 배치 및 사용
     * 20년간 애플리케이션의 수준 변화 (Facebook, skype, 스트리밍 미디어 등)
 
+## 4-4 일반화된 전달 및 SDN (Generalized Forward and SDN)
+![4-69.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-69.png)
+  * 경기, 시합(match)
+  * 활동 (action)
+  * 실행중인 동작에 대한 오픈소스 사례
 
+  ## 일반화된 전달 및 SDN (Generalized Forward and SDN)
+  * 각 라우터는 논리적으로 중앙집중화된 라우팅 컨트롤러에 의해서 계산되고 분배되는 **플로우 테이블** 을 포함
+
+## 개방형 흐름 데이터 평면 추상화
+![4-70.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-70.png)
+  * flow : 헤더필드에 의해 정의
+  * 일반화된 포워딩 : 간단한 패킷 처리 규칙
+    * 패턴 : 패킷 헤더필드의 값을 일치시킴
+    * 일치하는 패킷의 경우 활동 : drop, forward, modify, (send) match packet
+    * 우선순위 : 중복된 패턴을 분리 / 겹치는 패턴의 모호성을 없앰
+    * 카운터 : 바이트# 그리고 패킷#
+  * 라우터의 플로우 테이블 (컨트롤러에 의해 계산되고 분배 됨) 은 라우터의 match+action 룰을 정의
+
+## OpenFlow : Flow Table 항목
+![4-72.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-72.png)
+
+## example
+![4-73.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-73.png)
+
+  * [ACTION] IP주소가 51.6.0.8이면 port 6 으로 보냄
+  * [FORWARD] TCP 포트 22 로 향하는 모든 데이터그램을 전달(차단) X
+  * [FORWARD] 호스트 128.119.1.1 이 보낸 몯든 데이터 그램을 전달(차단) X
+  * [ACTION] MAC 주소(22:A7:23:II:EI:02)로 부터의 레이어 2 프레임
+
+## OpenFlow 추상화(abstraction)
+  * match+action : 서로 다른 종류의 장치를 통합
+  * Router
+    * match : 가장 긴 목적지 IP prefix
+    * action : 링크 전송
+  * Switch
+    * match : 대상 MAC 주소
+    * action : 전달 또는 홍수
+  * Firewall
+    * match : IP주소 및 TCP/UDP 포트번호
+    * action : 허락 또는 거절
+  * NAT
+    * match : IP 주소 및 포트
+    * action : 주소 및 포트 다시쓰기(rewrite)
+  * 서로 다른종류의 네트워크장비를 만들 수 있음
+
+## OpenFlow 예제
+  * Example : 호스트 H5 및 H6의 데이터그램을 SI를 통해 H3 또는 H4로 보내야하며 거기에서 S2까지 보내야합니다.
+![4-76.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-76.png)
+
+## Chapter 4 : 완료!
+  * Q. 어떻게 전달 테이블 (대상 기반 전달) 또는 흐름 테이블 (일반 전달) 계산합니까?
+  * A. control plane (다음 챕터)
 
 
 
