@@ -701,8 +701,78 @@
   ## SDN 컨트롤러의 구성 요소
   ![5-49.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-49.png)
   * 네트워크 제어 앱에 대한 인터페이스 레이어 : 추상화 API
-  * 네트워크 전체 상태 관리 계층 : 네트워크 링크, 스위치, 서비스 상태 : 분산 데이터베이스
+  * 네트워크 전체 상태 관리 계층 : 네트워크 링크, 스위치, 서비스 상태 : 분산 데이터베이스 - State Management
   * 통신 레이어 : SDN 컨트롤러와 제어 스위치 간 통신
+  * 각각의 계층으로 나눠져서 수행
+
+  ## OpenFlow 프로토콜
+  ![5-50.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-50.png)
+  * 컨트롤러 간 동작
+  * **메세지** 교환에 사용되는 TCP
+    * 선택적 암호화
+  * OpenFlow 메세지의 3가지 클래스
+    * 컨트롤러 - 스위치
+    * 비동기 (컨트롤러로 전환)
+    * 대칭 (기타)
+
+  ## OpenFlow : 컨트롤러에서 제어하는 메시지(controller-to-switch messages)
+  ![5-51.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-51.png)
+  * 주요 컨트롤러 - 스위치 메시지
+    * 기능 : 컨트롤러 쿼리 기능 전환, 응답전환
+    * 구성(configure) : 컨트롤러 쿼리 및 스위치 구성 변수 설정
+    * 수정-상태 : OpenFlow 테이블에서 흐름 항목 추가, 삭제, 수정
+    * packet-out : 컨트롤러는 이 패킷을 특정 스위치 포트에서 보낼 수 있음
+
+  ## OpenFlow : 컨트롤러 간 메시지(switch-to-controller messages)
+  * 중요한 부분 : 컨트롤러 간 메시지
+    * packet-in : 패킷(및 그 제어)을 컨트롤러로 전송하며 컨트롤러로 부터 패킷출력 메세지를 관찰
+    * 흐름 제거 : 스위치에서 삭제된 flow table 항목
+    * 포트 상태 : 컨트롤러에 포트 변경을 알림
+  * 다행하게도, 네트워크 운영자는 OpenFlow메시지를 직접 생성/전송하여 스위치를 프로그래밍하지 않습니다. 대신 컨트롤러에서 더 높은 수준의 추상화를 사용함
+
+  ## SDN : 컨트롤 / 데이터 플레인 상호 작용 예제
+  ![5-53.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-53.png)
+  1. S1, OpenFlow 포트 상태 메시지를 사용하여 컨트롤러에게 링크 실패 알림을 보냄
+  2. SDN 컨트롤러가 OpenFlow 메세지를 수신하고 링크 상태 정보를 업데이트
+  3. 다익스트라 라우팅 알고리즘 응용 프로그램은 이전 상태가 변경될 때 호출되도록 등록
+  4. 다익스트라의 라우팅 알고리즘 액세스 네트워크 그래프 정보, 컨트롤러의 링크 상태 정보, 새로운 경로를 계산
+  5. 링크 상태 라우팅 앱은 SDN 컨트롤러의 플로우 애플리케이션 구성요소와 상호작용하여 필요한 새로운 흐름 표(flow table)를 계산합니다.
+  6. 컨트롤러는 OpenFlow를 사용하여 업데이트가 필요한 스위치에 새 테이블에 설치합니다.
+
+  ## SDN: 선택된 도전과제
+  * 제어 평면 강화 : 신뢰할 수 있고 성능이 확장 가능하며 안전한 분산시스템
+    * 실패에 대한 견고성(robustness) : 제어 평면에 대한 신뢰할 수 있는 분산 시스템의 강력한 이론 활용
+    * 의존성, 보안 : 첫날부터 구운(baked)?
+  * 미션 특정 요구사항을 충족하는 네트워크, 프로토콜
+    * 예 : 실시간, 신뢰할 수 있는, 울트라 보안
+  * 인터넷 스케일링(?)
+
+  ## 5-6. ICMP : 인터넷 제어 메시지 프로토콜
+
+  ## ICMP: internet control message protocol
+  ![5-57.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-57.png)
+
+  * 호스트 및 라우터가 네트워크 수준의 정보를 전달하는데 사용
+    * 오류보고 : 연결할 수 없는 호스트, 네트워크, 포트, 프로토콜
+    * 에코 요청/응답 (핑에 의해 사용)
+  * IP위의 네트워크 계층
+    * IP 데이터그램에서 전달되는 ICMP 메세지
+  * ICMP 메시지 : 유형, 코드+첫번 째 8바이트의 IP 데이터그램이 오류를 발생
+
+  ## 추적(Traceroute) 및 ICMP
+  ![5-58.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-58.gif)
+  * source는 일련의 UDP 세그먼트를 대상으로 보냄
+    * 첫번째 세트는 TTL = 1
+    * 두번째 세트는 TTL = 2
+    * 가능성이 없는 포트번호
+  * n 번째 세트의 데이터그램이 n 번째 라우터에 도착하면
+    * 라우터가 데이터그램을 삭제하고 원본 ICMP 메시지(유형 11, 코드 0)
+    * ICMP 메시지는 라우터 및 IP주소가 포함
+  * ICMP 메세지가 도착하면 소스 레코드가 RTT를 기록
+  * 정지 기준
+    * UDP 세그먼트가 최종 호스트에 도착
+    * 대상이 ICMP "포트연결 불가" 메시지를 반환(유형3, 코드3)
+    * 소스 스톱
 
 
 
