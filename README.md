@@ -457,20 +457,73 @@
     * 각 네트워크 관리자는 자체 네트워크에서 라우팅을 제어할 수 있음
 
   ## 확장 가능한 라우팅에 대한 인터넷 접근 방식
-    * 라우터를 "자율 시스템(autonomous system, AS, 도메인)"으로 알려진 영역으로 집합
+  * 라우터를 "자율 시스템(autonomous system, AS, 도메인)"으로 알려진 영역으로 집합
 
-    * intra-AS 라우팅
-      * 호스트간 라우팅, 동일한 AS의 라우터
-      * AS의 모든 라우터는 일부 도메인 내 프로토콜을 실행해야함
-      * 다른 AS에 있는 라우터는 다른 도메인 내부 라우팅 프로토콜을 실행할 수 있음
-      * 게이트웨이 라우터 : 자체 AS의 "가장자리"에는 다른 AS의 라우터에 대한 링크가 있음
+  * intra-AS 라우팅
+    * 호스트간 라우팅, 동일한 AS의 라우터
+    * AS의 모든 라우터는 일부 도메인 내 프로토콜을 실행해야함
+    * 다른 AS에 있는 라우터는 다른 도메인 내부 라우팅 프로토콜을 실행할 수 있음
+    * 게이트웨이 라우터 : 자체 AS의 "가장자리"에는 다른 AS의 라우터에 대한 링크가 있음
 
-    * inter-AS 라우팅
-      * AS 사이의 라우팅
-      * 게이트웨이는 도메인간 라우팅(intra-도메인 라우팅도 물론)
+  * inter-AS 라우팅
+    * AS 사이의 라우팅
+    * 게이트웨이는 도메인간 라우팅(intra-도메인 라우팅도 물론)
 
+  ## 상호연결된 ASes
+  ![5-15.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-15.png)
+  * 인트라 및 AS간 라우팅 알고리즘으로 구성된 전달 테이블(forwarding table)
+    * 내부 AS 라우팅은 AS 내 목적지에 대한 항목을 결정
+    * 외부 목적지에 대한 AS 간 및 내부 AS 결정항목
+    * 3개의 ASes를 LG, SK, KT라 가정하고 각각의 라우터에서 forwarding table 을 업데이트 하는 방식
 
+  ## Inter-AS 작업
+  ![5-16.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-16.png)
+  * AS1 라우터가 AS1 외부로 향하는 데이터그램을 받았다 가정
+  * 라우터는 게이트웨이 라우터로 패킷을 전달해야 하지만 어느 라우터를 사용해야 하는가?
+  * AS1 라우터가 반드시 해야하는
+    * AS3 를 통해 AS2 가 어느정도까지 도달할 수 있는지 익히기
+    * AS1의 모든 라우터에 도달 가능성 정보를 전파(도달할 수 있는 정보를 가지고 있어야 함)
+  * AS간 라우팅 작업
 
+  ## Intra-AS 라우팅
+  * 내부 게이트웨이 프로토콜(interior gateway protocols, IGP)이라고 함
+  * 가장 일반적인 intra-AS 라우팅 프로토콜
+    * RIP : 라우팅 정보 프로토콜 (기말-교수님 출제성향)
+      * RIP는 5개? RIPv2는 250개?
+    * OSPF : Open Shortest Path First(본질적으로 OSPF와 동일한 IS-IS 프로토콜)
+      * 알고리즘 이름을 프로토콜 이름으로 정함
+    * IGRP : Internet Gateway Routing Protocol (Cisco가 2016년까지 수십년간 독점적으로 운영)
+    * **특정된 회사의 Protocol을 물어보기 보다는 공통적이고 관계적인 부분을 물어볼 예정**
+
+  ## OSPF (Open Shortest Path First)
+  * "open" : 공개적으로 이용가능한
+  * 링크 상태 알고리즘
+    * 링크 상태 패킷 보급
+    * 각 노드의 topology 맵
+    * 다익스트라 알고리즘을 이용한 경로 계산
+  ## 라우터가 AS 전체의 다른 모든 라우터에 OSPF 링크 상태
+  * **전체** AS에 있는 다른 라우터에게 라우터의 홍수 링크 상태 전파
+    * TCP 또는 UDP 대신 IP를 통해 직접 OSPF 메세지 전송
+    * 연결 상태 : 연결된 각 링크
+  * IS-IS 라우팅 프로토콜 : OSPF와 거의 동일
+
+  ## OSPF의 진보된 기능
+  * 보안 : 인증된 모든 OSPF 메세지 (악의적인 침입을 막기위해)
+  * 동일한 비용의 **여러** 경로가 허용 (RIP에서 단 하나의 경로만 허용)
+  * 각 링크에 대해 서로 다른 TOS에 대한 여러 비용 metric (예 : 최선의 ToS에 대해서는 위성 링크비용 낮음, 실시간 ToS에 대해서는 높음)
+  * 통합된 단일 및 다중 캐스트 지원
+    * 멀티캐스트 OSPF (MOSPF)는 OSPF와 동일한 topology 데이터베이스를 사용
+  * 대규모 도메인의 **계층적** OSPF
+
+  ## Hierarchical OSPF (기말)
+  ![5-20.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-20.png)
+  * 2 수준 계층 구조 : 로컬 영역, 백본
+    * 지역내에서만 링크상태 광고
+    * 각 노드에는 상세한 영역 topology가 존재
+    * 다른지역의 그물에 대한 방향(최단 경로)만 알 수 있음
+  * 영역 경계 라우터 : 자신의 영역에서 네트워크까지의 거리를 "요약"하고 다른 영역 경계 라우터에 전파(advertise, 광고)
+  * 백본 라우터 : 백본으로 제한된 OSPF 라우팅을 실행
+  * 경계 라우터 : 다른 AS에 연결
 
 
 
