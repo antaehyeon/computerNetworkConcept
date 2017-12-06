@@ -774,7 +774,59 @@
     * 대상이 ICMP "포트연결 불가" 메시지를 반환(유형3, 코드3)
     * 소스 스톱
 
+  ## 5-7. 네트워크 관리 및 SNMP (기말)
+  * SNMP가 시험에 나올 수 있음..?
 
+  ## 네트워크 관리는 무엇인가?
+  * **자율시스템** (일명 네트워크) : 1000초 마다 상호작용하는 하드웨어/소프트웨어 구성요소
+    * 규모의 차이가 있지만 수천개, 수십만개(구글, 마소 등)가 각각의 management 대상이 됨
 
+  * 모니터링, 제어가 필요한 다른 복잡한 시스템
+    * 제트 비행기
+    * 원자력 발전소
+    * 다른 것들?
+    * IoT 대상들도 management 범주에 포함되고, 감시, 제어, 관리 (jet airplane, nuclear, ower plant, others 등 ?) 의 부류도 모두 관리대상
+  > "네트워크 관리는 네트워크, 소프트웨어 및 인적 요소의 구현, 테스트, 평가, 구성, 평가, 구성, 분석, 평가 및 제어를 위해 네트워크 및 소자 리소스의 구축, 평가, 제어, 평가, 제어를 합리적인 비용으로 수행합니다."
+
+  > 네트워크 관점에서 보면 monitor, test, poll, configure, analyze 등을 합리적인 가격으로 real-time, operational performance, and Quaility of Service의 요구사항을 만족하는 것이다.
+
+  > QoS : Quality of service, 서비스의 품질 (bandwidth)
+  SLA : SI업체, Ni업체에게 정부가 요구하는 서비스 품질(어느 정도의 서비스를 요구하는)
+
+  ## 네트워크 관리를 위한 인프라
+  ![5-61.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-61.png)
+
+  * 관리 장치에는 데이터가 MIB (Management Information Base)로 수집되는 관리 대상 개체가 포함됩니다.
+
+  * Managed device = host, sensor 등 대상이 점점 늘어남
+  * Data Parameter를 가지고 관리
+  * 용어들에 대한 정의를 명확히 해야 표준을 정할 수 있음
+  * 그래서 용어를 물어보는 것(기말)
+
+  ## SNMP 프로토콜
+  * MIB정보, 명령을 전달하는 두가지 방법
+  ![5-62.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-62.gif)
+
+  * Ondemand 방식 = request / response
+
+  ## SNMP 프로토콜 : 메시지 타입
+  ![5-63.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-63.png)
+
+  ## SNMP 프로토콜 : 메세지 형식
+  ![5-64.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-64.png)
+
+  * SNMP 가 무엇이다 정도만 알면됨, 외울필요 없음
+  * Protocol Data Unit, PDU
+
+  ## Chapter 05 요약
+  * 네트워크 제어평면에 접근
+    * 라우터 단위 제어 (전통적)
+    * 논리적으로 중앙화된 제어(소프트웨어 정의된 네트워킹)
+  * 전통적인 라우팅 알고리즘
+    * 인터넷에서 구현 : OSPF, BGP
+  * SDN 컨트롤러
+    * 실제로 구현 : ODL, ONOS
+  * 인터넷 제어 메시지 프로토콜
+  * 네트워크 관리(management)
 
 ### 6단원. 링크 계층: 링크, 접속망, 랜(The Link Layer and LANs)
