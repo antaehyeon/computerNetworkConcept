@@ -525,11 +525,103 @@
   * 백본 라우터 : 백본으로 제한된 OSPF 라우팅을 실행
   * 경계 라우터 : 다른 AS에 연결
 
+  ## 5-4. routing among the ISPs : BGP (기말)
+  * Internet inter-AS routing : BGP
+  * Border Gateway Protocol, BGP : 사실상의 도메인간 라우팅 프로토콜
+    * 인터넷을 연결하는 접착제
+  * BGP는 각 AS를 다음과 같은 방법으로 제공
+    * eBGP : 인접한 AS로부터 서브넷 반응성 정보를 얻음
+    * iBGP : 모든 AS내부 라우터에 도달 가능성(reachability) 정보를 전파
+    * 도달 가능성 정보 및 정책을 기반으로 다른 네트워크에 대한 "좋은(good)" 라우터(경로)를 결정
+  * 서브넷이 인터넷의 나머지 부분에 자신의 존재를 알리는 것을 허용 (나 여기있다)
+  * OGP, BGP 풀네임이나 eBGP 또는 iBGP 연습문제 참고
 
+  ## eBGP, iBGP 연결
+  ![5-24.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-24.gif)
+  * eBGP인지, iBGP인지
 
+  ## BGP basics
+  ![5-25.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-25.gif)
+  * BGP 세션 : 두개의 BGP 라우터(피어)가 반영구적인 TCP연결을 통해 BGP 메세지를 교환
+    * 다른 목적지 네트워크 프리픽스 대한 광고 경로 (BGP는 경로벡터 프로토콜임)
+  * AS3 게이트웨이 라우터 3a가 경로 AS3, X를 AS2 게이트웨이 라우터 2c에 알릴 때
+    * AS3는 AS2에게 데이터그램을 X로 전달할 것을 약속
 
+  ## 경로 속성 및 BGP 경로
+  * 광고된 접두사(advertised prefix)에는 BGP속성이 포함
+    * prefix + attributes = route
+  * 두개의 중요한 속성
+    * AS-PATH : 접두사 광고가 통과된 ASES 목록
+    * NEXT-HOP : 다음과 같은 특정 내부-AS라우터를 다음 홉AS로 나타냄
+  * 정책 기반 라우팅
+    * 게이트웨이 수신경로 광고는 가져오기 정책(import policy)을 사용하여 accept/decline를 초과하는 경로를 사용 (예: AS Y를 통과하지 않음)
+    * AS 정책은 또한 다른 인접한 AS에 대한 경로를 광고할지 여부를 결정
+    * 예를들어 서울에서 부산으로 최고성능을 기반(직진)으로 가고싶다고 하자, 그러나 정책(policy)가 허용되지 않으면 무조건 직진할 수가 없음. 즉, Policy > 성능
 
+  ## BGP 경로 광고(advertisement)
+  ![5-27.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-27.gif)
 
+  * AS2 라우터 2c는 AS3 라우터 3a에서 경로 알림 AS3, X (eBGP를 통해)를받습니다.
+  * AS2 정책에 따라 AS2 라우터 2c는 경로 AS3을 수용합니다. X는 iBGP를 통해 모든 AS2 라우터로 전파됩니다
+  * AS2 정책에 따라 AS2 라우터 2a는 AS2, AS3, X 경로를 ASB 라우터 1c에 알립니다 (eBGP를 통해)
+
+  ![5-28.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-28.gif)
+  * 게이트웨이 라우터는 대상 경로에 대한 다중 경로를 학습할 수 있음
+    * AS1 게이트웨이 라우터 1c는 경로 AS2, AS3, X를 2a에서 확인
+    * AS1 게이트웨이 라우터 1c는 경로 AS3, X를 3a에서 습득
+    * 정책에 따라 AS1 게이트웨이 라우터 1c는 경로 AS3, X를 선택하고 AS1 내의 경로를 iBGP를 통해 알림
+
+  ## BGP Message
+  * TCP연결을 통해 피어간에 교환되는 BGP 메세지
+  * BGP 메세지
+    * OPEN : 원격 BGP 피어와 TCP 연결을 열고 BGP 피어의 송신을 인증
+    * UPDATE : 새 경로를 알림 (또는 오래된 것을 철회)
+    * KEEP ALIVE : UPDATE가 없을 때 연결을 유지 (또는 ACKs OPEN 요청)
+    * NOTIFICATION : 이전 메세지의 오류를 보고 (또는 연결을 닫는데 사용)
+
+  ## BGP, OSPF 전달 테이블 항목
+  * 라우터는 전달 테이블 항목을 접두어(prefix)로 어떻게 설정합니까?
+  ![5-30.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-30.gif)
+  * recall : 1a, 1b, 1c iBGP를 통해 dest X에 대해 알아보기
+  * 1c : "X 경로가 1c를 통과 함"
+
+  ![5-30-1.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-30-1.png)
+  * 1d : OSPF 내부 도메인(intra-domain) 라우팅 : 1c로 이동, 발신 로컬 인터페이스 1로 전달
+
+  ![5-31.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-31.png)
+  * 1a : OSPF 내부 도메인 라우팅 : 1c에 도달하고 발신 로컬 인터페이스 2로 전달
+
+## BGP route selection
+  * 라우터는 목적지 AS에 대한 하나 이상의 라우트에 대해 학습하고 다음에 기초하여 라우트를 선택
+  1. 지역 특징 가치 속성(local preference value attribute) : 정책 결정
+  2. 최단 AS-PATH
+  3. 가장 가까운 NEXT-HOP 라우터 : hot potato(뜨거운 감자, 최대한 빨리 판단할 수 있는) 라우팅
+  4. 추가 기준
+
+## BGP : 광고를 통한 정책 수립
+  ![5-33.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-33.png)
+  * ISP가 고객 네트워크에서만 트래픽을 라우팅 하기만을 원한다고 가정 (다른 ISP간의 트래픽 이동을 원치 않음)
+  * A는 경로 Aw를 B와 C에 알림
+  * B가 BAw를 C에 광고하지 않기로 결정한 경우
+    * C, A, w중 어느것도 B의 고객이 아니기 때문에 B는 라우팅 CBAw에 대해 "수익"을 얻지 못함
+    * C는 CBAw 경로에 대해 알지 못함
+  * C는 CAw를 사용하지 않도록 CAw(B를 사용하지 않음)를 라우팅함
+
+  * A, B, C는 공급자 네트워크
+  * X, W, Y는 고객 (공급자 네트워크의)
+  * X는 이중 홈(dual-home) : 2개의 네트워크에 연결됨
+  * 시행 할 정책 : X는 X를 통해 B에서 C로 라우팅하고 싶지 않음
+    * 그래서 X는 B에게 C경로를 광고하지 않을 것
+
+  ## 왜 intra-AS와 inter-AS 라우팅은 다른가?
+  * 정책
+    * inter-AS : 관리자는 트래픽이 라우팅되는 방식, 네트워크를 통해 라우팅되는 방식을 제어하려고 함
+    * intra-AS : 단일 관리자, 정책 결정 필요 없음
+  * 규모
+    * 계층적 라우팅으로 테이블 크기를 줄이고 업데이트 트래픽을 줄임
+  * 성능
+    * inter-AS : 성능에 집중할 수 있음
+    * intra-AS : 정책이 성능보다 우세함 (policy > performance)
 
 
 
