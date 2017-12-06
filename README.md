@@ -1,4 +1,4 @@
-# Sejong Computer Network
+  <!-- # Sejong Computer Network -->
 세종대학교 김영복 교수님 컴퓨터 네트워크 기말 정리본 입니다 (PPT 기반, 모르는 내용은 책으로 보충)
 
 ## 4단원. 네트워크 계층 (The Network Layer: Data Plane)
@@ -40,7 +40,7 @@
     * **지역**별, 라우터별 기능
     * 라우터 입력 포트에 도착하는 데이터그램이 라우터 출력 포트로 전달되는 방법을 결정
     * 포워딩(forwarding) 기능
-    ![포워딩 기능](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-5.%20forwarding%20function.png)
+      ![포워딩 기능](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-5.%20forwarding%20function.png)
 2. Control Plane
     * 네트워크 **전체** 논리
     * 출발지 호스트에서 목적지 호스트까지의 end-end경로를 따라 라우터간 Datagram이 라우팅 되는 방식을 결정
@@ -137,7 +137,7 @@
     * IP주소의 동일한 서브넷을 가진 장치 인터페이스
     * **라우터를 끼지 않고** 물리적으로 서로 연결할 수 있음
   * receipe
-  ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets.png)
+      ![4-37. Subnets.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-37.%20Subnets.png)
     * 서브넷을 결정하고 호스트 또는 라우터에서 각 인터페이스를 분리하고 격리된 네트워크 섬을 만듬
     * 격리 된 각 네트워크를 **서브넷**이라고 함
     * **ipconfig**
@@ -293,7 +293,7 @@
     * 파편화 불가
 
   * IPv6 데이터그램 포맷 (매우중요-기말1문제)
-  ![4-62.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-62.png)
+    ![4-62.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-62.png)
     * 우선순위 : Flow에서 데이터 그램간의 우선순위 식별
     * 흐름 레이블 : 동일한 Flow의 데이터 그램 식별
     * 다음 헤더 : 데이터의 상위 계층 프로토콜 식별
@@ -370,7 +370,7 @@
 
 ## OpenFlow 예제
   * Example : 호스트 H5 및 H6의 데이터그램을 SI를 통해 H3 또는 H4로 보내야하며 거기에서 S2까지 보내야합니다.
-![4-76.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-76.png)
+  ![4-76.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-76.png)
 
 ## Chapter 4 : 완료!
   * Q. 어떻게 전달 테이블 (대상 기반 전달) 또는 흐름 테이블 (일반 전달) 계산합니까?
@@ -581,7 +581,7 @@
 
   ## BGP, OSPF 전달 테이블 항목
   * 라우터는 전달 테이블 항목을 접두어(prefix)로 어떻게 설정합니까?
-  ![5-30.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-30.gif)
+      ![5-30.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-30.gif)
   * recall : 1a, 1b, 1c iBGP를 통해 dest X에 대해 알아보기
   * 1c : "X 경로가 1c를 통과 함"
 
@@ -593,10 +593,10 @@
 
 ## BGP route selection
   * 라우터는 목적지 AS에 대한 하나 이상의 라우트에 대해 학습하고 다음에 기초하여 라우트를 선택
-  1. 지역 특징 가치 속성(local preference value attribute) : 정책 결정
-  2. 최단 AS-PATH
-  3. 가장 가까운 NEXT-HOP 라우터 : hot potato(뜨거운 감자, 최대한 빨리 판단할 수 있는) 라우팅
-  4. 추가 기준
+    1. 지역 특징 가치 속성(local preference value attribute) : 정책 결정
+    2. 최단 AS-PATH
+    3. 가장 가까운 NEXT-HOP 라우터 : hot potato(뜨거운 감자, 최대한 빨리 판단할 수 있는) 라우팅
+    4. 추가 기준
 
 ## BGP : 광고를 통한 정책 수립
   ![5-33.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-33.png)
@@ -659,10 +659,10 @@
 
   ## 소프트웨어 정의 네트워킹 (SDN)
   ![5-45.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-45.gif)
-  1. 일반화 된 "플로우 기반"포워딩 (예 : OpenFlow)
-  2. 제어, 데이터 평면(data plane) 분리
-  3. 제어 평면(control plane)기능 - 데이터 전송 스위치의 외부기능
-  4. 프로그램 가능한 제어 어플리케이션
+    1. 일반화 된 "플로우 기반"포워딩 (예 : OpenFlow)
+    2. 제어, 데이터 평면(data plane) 분리
+    3. 제어 평면(control plane)기능 - 데이터 전송 스위치의 외부기능
+    4. 프로그램 가능한 제어 어플리케이션
 
   * 중앙 집중화된 Remote Controller
   * Control plane 과 Data Plane 으로 나뉘는 부분
@@ -732,12 +732,12 @@
 
   ## SDN : 컨트롤 / 데이터 플레인 상호 작용 예제
   ![5-53.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-53.png)
-  1. S1, OpenFlow 포트 상태 메시지를 사용하여 컨트롤러에게 링크 실패 알림을 보냄
-  2. SDN 컨트롤러가 OpenFlow 메세지를 수신하고 링크 상태 정보를 업데이트
-  3. 다익스트라 라우팅 알고리즘 응용 프로그램은 이전 상태가 변경될 때 호출되도록 등록
-  4. 다익스트라의 라우팅 알고리즘 액세스 네트워크 그래프 정보, 컨트롤러의 링크 상태 정보, 새로운 경로를 계산
-  5. 링크 상태 라우팅 앱은 SDN 컨트롤러의 플로우 애플리케이션 구성요소와 상호작용하여 필요한 새로운 흐름 표(flow table)를 계산합니다.
-  6. 컨트롤러는 OpenFlow를 사용하여 업데이트가 필요한 스위치에 새 테이블에 설치합니다.
+    1. S1, OpenFlow 포트 상태 메시지를 사용하여 컨트롤러에게 링크 실패 알림을 보냄
+    2. SDN 컨트롤러가 OpenFlow 메세지를 수신하고 링크 상태 정보를 업데이트
+    3. 다익스트라 라우팅 알고리즘 응용 프로그램은 이전 상태가 변경될 때 호출되도록 등록
+    4. 다익스트라의 라우팅 알고리즘 액세스 네트워크 그래프 정보, 컨트롤러의 링크 상태 정보, 새로운 경로를 계산
+    5. 링크 상태 라우팅 앱은 SDN 컨트롤러의 플로우 애플리케이션 구성요소와 상호작용하여 필요한 새로운 흐름 표(flow table)를 계산합니다.
+    6. 컨트롤러는 OpenFlow를 사용하여 업데이트가 필요한 스위치에 새 테이블에 설치합니다.
 
   ## SDN: 선택된 도전과제
   * 제어 평면 강화 : 신뢰할 수 있고 성능이 확장 가능하며 안전한 분산시스템
@@ -791,7 +791,7 @@
   > 네트워크 관점에서 보면 monitor, test, poll, configure, analyze 등을 합리적인 가격으로 real-time, operational performance, and Quaility of Service의 요구사항을 만족하는 것이다.
 
   > QoS : Quality of service, 서비스의 품질 (bandwidth)
-  SLA : SI업체, Ni업체에게 정부가 요구하는 서비스 품질(어느 정도의 서비스를 요구하는)
+  >   SLA : SI업체, Ni업체에게 정부가 요구하는 서비스 품질(어느 정도의 서비스를 요구하는)
 
   ## 네트워크 관리를 위한 인프라
   ![5-61.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-61.png)
@@ -805,7 +805,7 @@
 
   ## SNMP 프로토콜
   * MIB정보, 명령을 전달하는 두가지 방법
-  ![5-62.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-62.gif)
+      ![5-62.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-62.gif)
 
   * Ondemand 방식 = request / response
 
@@ -829,4 +829,89 @@
   * 인터넷 제어 메시지 프로토콜
   * 네트워크 관리(management)
 
-### 6단원. 링크 계층: 링크, 접속망, 랜(The Link Layer and LANs)
+## 6단원. 링크 계층: 링크, 접속망, 랜(The Link Layer and LANs)
+* 목표
+  * 링크 계층 서비스의 기본 원리 이해
+    * 오류 검출 및 정정
+    * broadcast 채널 공유 : 다중 접속
+    * 링크 계층 주소 지정
+    * 로컬 영역 네트워크 : 이더넷, VLAN
+  * 인스턴스화, 다양한 링크계층 기술 구현
+    * 인스턴스화 : 추상적인 것을 구체적인 예를 통해서 표현
+
+## 6-1. introduction, services
+
+## 링크 레이어 : 소개
+* 전문 용어(집합적인, terminology)
+  * 호스트 및 라우터 : **노드**
+  * 통신 경로를 따라 인접 노드들을 연결하는 통신 채널들 : **링크들**
+    * 유선 링크
+    * 무선 링크
+    * LAN
+  * 계층 2 패킷 : **프레임**, 데이터 그램 캡슐화
+  > **데이터 링크 계층**은 한 노드에서 링크를 통해 **물리적으로 인접**한 노드로 데이터 그램을 전송할 책임이 있습니다.
+
+
+
+## 링크 레이어 : 내용
+
+* 서로 다른 링크를 통해 서로 다른 링크 프로토콜에 의해 전송된 데이터그램
+  * 예를들어, 제 1 링크상의 이더넷, 중간 링크상의 프레임 릴레이, 마지막 링크상의 802.11
+* 각 링크 프로토콜은 서로 다른 서비스를 제공
+  * 예를 들어, 링크를 통해 rdt를 제공할 수 있고 제공하지 않을 수도 있음
+    * rdt : Real Data Transport
+* **예시 : 교통에 비유**
+  * 프린스턴(Princeton)에서 로잔(Lausanne)까지의 여행
+    * 리무진 : 프린스턴 ~ JFK
+    * 비행기 : JFK ~ 제네바
+    * 기차 : 제네바에서 로젠까지
+    * 관광객 = **데이터그램**
+    * 전송 세그먼트 = **통신 링크**
+    * 운송 모드 = **링크 계층 프로토콜**
+    * 여행사 = **라우팅 알고리즘**  (agent가 어떤 구간을 통해서 갈 수 있는지 예약)
+
+
+
+## 링크 레이어 서비스
+
+* **프레이밍(framing), 링크 액세스**
+  * 데이터 그램을 프레임에 캡슐화하고, 헤더 및 예고(trailer)에 추가
+  * 공유매체인 경우 채널에 접근
+  * 출발지, 목적지를 식별하기 위해 프레임 헤더에 사용되는 "MAC" 주소
+    * Media Access Control, MAC
+    * IP주소와는 다른
+* **인접한 노드 사이의 안정적인 전달**
+  * 우리는 이미 이것을 어떻게 하는지 배웠음(Chapter 03)
+  * 거의 사용되지 않은 비트 오류 링크 (광섬유, 일부 꼬임 쌍)
+  * 무선 링크 : 높은 오류율(상대적으로 많은 에러가 발생)
+    * Q. 링크 수준과 End-End 안정성이 모두 중요한 이유는 무엇입니까?
+* **흐름 제어 (Flow Control)**
+  * 인접한 송신노드와 수신노드 사이의 속도조절(pacing)
+* **오류 검출 (Error Dection)**
+  * 신호 감쇄, 노이즈로 인한 오류
+  * 수신기는 오류 유무를 감지
+    * 재전송 또는 프레임 드롭 신호 발신자 ? 
+    * signals sender for retransmission or drops frame
+* **오류 수정 (Error correction)**
+  * 수신기는 재전송에 의지하지 않고 비트 오류를 식별하고 **수정**
+* **반이중 (half-duplex) 및 전이중 (full-duplex)**
+  * 반이중으로 링크의 양쪽 끝에있는 노드는 전송할 수 있지만, 동시에 전송할 수는 없음
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
