@@ -51,25 +51,25 @@
 
 ### 라우터별 제어 계획(Per-router control plane)
 ![Per-router control plane](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-7.%20Per-router%20control%20plane.gif)
-각 라우터의 개별 라우팅 알고리즘 구성요소는 Control Plane에서 상호작용
+  * 각 라우터의 개별 라우팅 알고리즘 구성요소는 Control Plane에서 상호작용
 
 ### 논리적으로 중앙 집중화 된 Control Plane
 ![Logically centeralized control plane](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-8.%20Logically%20centralized%20control%20plane.png)
-고유한(일반적으로 원격) 컨트롤러가 로컬 제어 에이전트(control agents, CAs)와 상호작용
+* 고유한(일반적으로 원격) 컨트롤러가 로컬 제어 에이전트(control agents, CAs)와 상호작용
 
 
 ![네트워크 계층](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/network%20layer.png)
 
 ### 4-2. 라우터 내부에는 무엇이 있는가?
-교수님이 중요하지 않다고 한 부분은 제외되었습니다
+  * 교수님이 중요하지 않다고 한 부분은 제외되었습니다
 
 ### 이더넷 케이블 (UTP) - 어떻게 만드는가 (기말5점)
 ![4-22. Ethernet Cable (UTP)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-22.%20Ethernet%20Cable%20(UTP).png)
-해당 라인 순서와 cross cable에 대한부분 숙지
+  * 해당 라인 순서와 cross cable에 대한부분 숙지
 
 ### 라우터 외부 연결
 ![4-25. Router external connections](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-25.%20Router%20external%20connections.png)
-Console Port : configuration 접속포트
+  * Console Port : configuration 접속포트
 
 ## 4-3. IP : Internet Protocl
 1. datagram 포맷
@@ -199,7 +199,7 @@ Console Port : configuration 접속포트
     * 사용중인 주소로 임대 계약을 갱신할 수 있음
     * 주소를 재사용 할 수 있음(예: 연결된 상태일 때만 유지)
     * 네트워크 가입을 원하는 모바일 사용자 지원(보다 빠르게)
-  * DHCP 개요 (개중요-DHCP 순서에 대한것을 물어볼 수 있음)
+  * DHCP 개요 (기말 매우 중요-DHCP 순서에 대한것을 물어볼 수 있음)
     * 호스트에서 DHCP 검색, discover메세지를 선택(옵션)
     * DHCP서버가 DHCP 제공, offer메시지로 응답
     * 호스트가 DHCP 요청, request메세지에 IP주소를 담아 응답
@@ -376,8 +376,108 @@ Console Port : configuration 접속포트
   * Q. 어떻게 전달 테이블 (대상 기반 전달) 또는 흐름 테이블 (일반 전달) 계산합니까?
   * A. control plane (다음 챕터)
 
+# 5단원. 네트워크 계층: 제어 평면 (The Network Layer: Control Plane)
+  * 챕터 목표 : 네트워크 제어면의 원리 이해
+  * 기존 라우팅 알고리즘
+  * SDN 컨트롤러 관리
+  * 인터넷 제어 메세지 프로토콜
+  * 네트워크 관리
+
+  * 그리고 인터넷에서의 그들의 즉각적인 이행
+    * OSPF, BGP, OpenFlow, ODL 및 ONOS컨트롤러, ICMP, SNMP
 
 
-### 5단원. 네트워크 계층: 제어 평면 (The Network Layer: Control Plane)
+ ## 5-1. introduction : 도입
+
+ ## 네트워크계층 기능
+  * 리콜 : 두개의 네트워크 계층 기능
+    * [data plane]포워딩(forwarding) : 라우터의 입력에서 적절한 라우터의 출력으로 패킷 이동
+    * [control plane]라우팅(routing) : 출발지에서 목적지까지 패킷에 의해 취해진 경로를 결정
+  * 네트워크 제어 평면을 구조하하기위한 두 가지 접근법
+    * 라우터 단위 제어(전통적)
+    * 논리적으로 중앙화 된 제어 (소프트웨어 정의된 네트워킹)
+
+  ## 라우터 단위 제어(Pre-router control plane)
+  * 각 라우터의 개별 라우팅 알고리즘 구성요소가 제어평면에서 상호작용하여 전달 테이블을 계산
+  * [챕터4 라우터별 제어계획 그림 참고](https://github.com/antaehyeon/computerNetworkConcept#라우터별-제어-계획per-router-control-plane)
+
+  ## 논리적으로 중앙집중화 된 제어평면
+  * 고유한 (일반적으로 원격) 컨트롤러는 라우터의 로컬제어 에이전트(Control agents, CAs)와 상호작용하여 전달 테이블을 계산
+  * 챕터4 논리적으로 중앙집중화된 제어계획 그림참고](https://github.com/antaehyeon/computerNetworkConcept#논리적으로-중앙-집중화-된-control-plane)
+
+  ## 5-2. 라우팅 프로토콜
+  * 연결 상태
+  * 거리 벡터
+
+  ## 라우팅 프로토콜
+  * 라우팅 프로토콜 목표 : 라우터의 네트워크를 통해 호스트를 수신 호스트에 이르기까지 "양호한(good)" 경로(동등한, 라우터)를 결정
+  * 경로 : 라우터 패킷의 순서는 주어진 초기 출발지 호스트에서 지정된 최종 목적지 호스트로 이동하는 과정을 거침
+  * "양호(good)" : 최소 비용, 가장 빠른, 최소 혼잡
+  * 라우팅 : "TOP10" 네트워킹 대회!
+  * 각각의 good 기준이 다른점을 파악
+    * 서울에서 부산으로 갈때 라우팅 경로의 차이가 생길 수 있음
+
+  ## 네트워크의 추상화 그래프
+  * 그래프 추상화(graph abstraction)는 P2P와 같은 다른 네트워크 환경에서 유용하며, 여기서 N은 피어세트이고 E는 TCP연결 세트
+
+  ## 그래프 추상화 : 비용
+  * Q. u와 z 사이의 최소 비용 경로는 무엇입니까?
+  * A. 라우팅 알고리즘(routing algorithm) : 최소 비용 경로를 찾는 알고리즘
+
+  ## 라우팅 알고리즘 정의
+  * Q. 글로벌 또는 분산화 정보?
+    * 글로벌
+      * 모든 라우터에는 완벽한 토플로지(topology), 링크 비용 정보가 있음
+      * 링크 상태 알고리즘
+
+    * 분산된 (decentralized)
+      * 라우터는 물리적으로 연결된 이웃을 알고, 이웃과 비용을 연결
+      * 반복적인 계산과정 및 이웃과의 정보 교환
+      * 거리 벡터 알고리즘
+  * Q. 정적 또는 동적?
+    * 정적
+      * 시간 흐름이 시간 경과에 따라서 천천히 변화
+      * 경로가 빠르게 변화
+        * 주기적인 갱신
+        * 링크 비용 변화에 대응
+
+  ## 5-3. 인터넷에서의 intra-AS 라우팅 OSPF(기말)
+
+
+  ## 확장 가능한 라우팅 만들기
+  * 모든 라우터가 동일 해야함
+  * 네트워크 "flat" 실제로는 사실이 아님
+
+  * scale : 수십억의 목적지를 가진
+    * 라우팅 테이블에 모든 대상을 저장할 수 없음
+    * 라우팅 테이블 교환은 링크가 될 것
+
+  * 행정 차지(administrative autonomy)
+    * 인터넷 = 네트워크의 네트워크
+    * 각 네트워크 관리자는 자체 네트워크에서 라우팅을 제어할 수 있음
+
+  ## 확장 가능한 라우팅에 대한 인터넷 접근 방식
+    * 라우터를 "자율 시스템(autonomous system, AS, 도메인)"으로 알려진 영역으로 집합
+
+    * intra-AS 라우팅
+      * 호스트간 라우팅, 동일한 AS의 라우터
+      * AS의 모든 라우터는 일부 도메인 내 프로토콜을 실행해야함
+      * 다른 AS에 있는 라우터는 다른 도메인 내부 라우팅 프로토콜을 실행할 수 있음
+      * 게이트웨이 라우터 : 자체 AS의 "가장자리"에는 다른 AS의 라우터에 대한 링크가 있음
+
+    * inter-AS 라우팅
+      * AS 사이의 라우팅
+      * 게이트웨이는 도메인간 라우팅(intra-도메인 라우팅도 물론)
+
+
+
+
+
+
+
+
+
+
+
 
 ### 6단원. 링크 계층: 링크, 접속망, 랜(The Link Layer and LANs)
