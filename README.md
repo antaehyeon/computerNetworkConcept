@@ -403,7 +403,7 @@
 
   ## 논리적으로 중앙집중화 된 제어평면
   * 고유한 (일반적으로 원격) 컨트롤러는 라우터의 로컬제어 에이전트(Control agents, CAs)와 상호작용하여 전달 테이블을 계산
-  * 챕터4 논리적으로 중앙집중화된 제어계획 그림참고](https://github.com/antaehyeon/computerNetworkConcept#논리적으로-중앙-집중화-된-control-plane)
+  * [챕터4 논리적으로 중앙집중화된 제어계획 그림참고](https://github.com/antaehyeon/computerNetworkConcept#논리적으로-중앙-집중화-된-control-plane)
 
   ## 5-2. 라우팅 프로토콜
   * 연결 상태
@@ -622,6 +622,88 @@
   * 성능
     * inter-AS : 성능에 집중할 수 있음
     * intra-AS : 정책이 성능보다 우세함 (policy > performance)
+
+ ## 5-5. SDN 제어 평면
+  * 인터넷 네트워크 계층 : 역사적으로 분산형, 라우터 단위방식으로 구현
+    * monolithic 라우터에는 전용 라우터 OS(IP, RIP, IS-IS, OSPF, BGP)의 독점적인 구현이 포함되어 있다(예 : Cisco OS)
+      * monolithic : 일체로 되어있는, 이음매가 없는, IC등 직접회로의 반도체 기판이 한 장일 때
+    * 다양한 네트워크 계층 기능을 위한 다양한 "미들박스" : 방화벽, 로드 밸런서, NAT 박스
+      * flexible 하게 네트워크 계층 기능들을 SDN으로 구현할 수 있음
+  * 2005년 : 네트워크 제어 재설정에 대한 새로워진 관심
+
+  ## [Recall : 라우터별 제어 계획](https://github.com/antaehyeon/computerNetworkConcept#라우터별-제어-계획per-router-control-plane)
+
+  ## [Recall : 논리적 중앙집중 제어계획](https://github.com/antaehyeon/computerNetworkConcept#논리적으로-중앙-집중화-된-control-plane)
+
+  ## 소프트웨어 정의 네트워킹 (SDN)
+  * 왜 논리적으로 중앙 집중식 제어 계획입니까?
+    * 쉬운 네트워크 관리 : 라우터의 잘못된 설정을 방지하고, 트래픽 흐름의 유연성 향상
+    * 분산형 프로그래밍 : 더 어려움 : 각 라우터에 구현된 분산 알고리즘(프로토콜)의 결과로 테이블 계산
+  * Control Plane의 공개 (비 독점) 구현
+  * Management 하기 쉽고 (단, 각각의 라우터마다 configuration을 진행해야 하는 단점)
+
+  ## 교통 공학 : 어려운 전통적인 라우팅
+  ![5-42.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-42.png)
+
+  * Q : 네트워크 운영자가 u-to-z 트래픽이 uvwz, x-to-z 트래픽이 xwyz를 통과하도록하려면 어떻게해야합니까?
+  * A : 트래픽 라우팅 알고리즘이 경로를 적절히 계산할 수 있도록 링크 가중치를 정의해야합니다 (또는 새 라우팅 알고리즘 필요)!
+  * 링크 중량은 "knobs" 를 제어할 수 있습니다.
+
+  ![5-43.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-43.png)
+  * Q. 네트워크 운영자가 uvwz 및 uxyz (로드 밸런싱)를 따라 u-to-z 트래픽을 분할하려는 경우 어떻게해야합니까?
+  * A. 할 수 없습니다(또는 새로운 라우팅 알고리즘이 필요함)
+
+  ![5-44.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-44.png)
+  * Q : w가 파란색과 빨간색 트래픽을 달리 다르게하려면 어떻게해야합니까?
+  * A : 할 수 없습니다 (목적지 기반 포워딩 및 LS, DV 라우팅 사용)
+
+  ## 소프트웨어 정의 네트워킹 (SDN)
+  ![5-45.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-45.gif)
+  1. 일반화 된 "플로우 기반"포워딩 (예 : OpenFlow)
+  2. 제어, 데이터 평면(data plane) 분리
+  3. 제어 평면(control plane)기능 - 데이터 전송 스위치의 외부기능
+  4. 프로그램 가능한 제어 어플리케이션
+
+  * 중앙 집중화된 Remote Controller
+  * Control plane 과 Data Plane 으로 나뉘는 부분
+  * software 적으로 flexible 하게 프로그래밍해서 한꺼번에 처리하게 할 수 있음 (장점)
+
+  ## SDN 관점 : 데이터 평면(data plane) 스위치
+  ![5-46.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-46.png)
+  * 데이터 평면 스위치
+    * 하드웨어에서 일반화된 데이터 평면 포워딩(4.4절)을 구현하는 빠르고 단순한 상품 스위치
+    * 컨트롤러에 의해 계산된 스위치 흐름표
+    * 테이블 기반 스위치 제어를 위한 API (예: OpenFlow)
+      * 제어할 수 있는것과 그렇지 않은것을 정의
+    * 컨트롤러(예 : OpenFlow)와 통신하기 위한 프로토콜
+  * 종속적으로 분리되어 있음
+  * Forwarding table이 배포가되면, 그것을 소프트웨어로 처리하는 부분이 상이함
+  * SDN Controller에는 각각의 방법이 다름 (예 : OpenFlow : 표준을 사용-API)
+
+  ## SDN 관점 : SDN 컨트롤러
+  ![5-47.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-47.png)
+  * SDN 컨트롤러 (네트워크 OS)
+    * 네트워크 상태 정보를 유지
+    * Northbound API를 통해 "위"의 네트워크 제어 응용 프로그램과 상호작용
+    * Southbound API를 통해 "아래"의 네트워크 스위치와 상호작용
+    * 성능, 확장성, 내결함성, 견고성을 위한 분산시스템으로 구현
+  * 네트워크 정보를 관리하고 위, 아래와 상호작용 하는것(north, south)
+  * Southbound API : 소프트웨어적으로 여러개를 병합하기 때문에 성능적으로 효율이 증가
+
+  ## SDN 관점 : 애플리케이션 컨트롤
+  ![5-48.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-48.png)
+  * 네트워크-제어 앱
+    * 두뇌 제어 : 하위 수준 서비스를 사용하여 제어 기능 구현, SDN 컨트롤러가 제공하는 API
+    * 번들되지 않음 : 타사에서 제공할 수 있음 : 라우팅 공급업체 또는 SDN 컨트롤러와 별개
+  * 계층화 구조를 채택해서 flexible 하게 구현
+    * 성능은 좋아지면서 가격은 저렴하게 (API 형식으로 사용하기 때문에)
+
+  ## SDN 컨트롤러의 구성 요소
+  ![5-49.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-49.png)
+  * 네트워크 제어 앱에 대한 인터페이스 레이어 : 추상화 API
+  * 네트워크 전체 상태 관리 계층 : 네트워크 링크, 스위치, 서비스 상태 : 분산 데이터베이스
+  * 통신 레이어 : SDN 컨트롤러와 제어 스위치 간 통신
+
 
 
 
