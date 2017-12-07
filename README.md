@@ -1290,6 +1290,61 @@
 
 
 
+## ARP : 주소 확인 프로토콜 (Address resolution protocol)
+
+- 어떻게 IP주소를 알고 인터페이스의 MAC주소를 결정하는가?
+
+![6-45](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-45.png)
+
+- **ARP 테이블** : LAN의 각 IP 노드 (호스트, 라우터)에 테이블이 있음
+  - 일부 LAN 노드에 대한 IP/MAC 주소 매핑
+    - **IP 주소; MAC 주소; TTL**
+  - TTL (Time To Live) : 주소 매핑을 잊은 시간 (일반적으로 20분)
+
+
+
+## ARP 프로토콜 : 같은 LAN
+
+- A가 B에게 데이터 그램을 보내려고 함
+  - B의 MAC주소가 A의 ARP 테이블에 없음
+-  A는 B의 IP주소를 포함하는 ARP 쿼리 패킷을 **브로드캐스트**함
+  - 목적지 MAC의 주소 = FF-FF-FF-FF-FF-FF
+  - LAN상의 모든 노드는 ARP쿼리를 수신
+- B는 ARP 패킷을 수신하고 B의 MAC 주소를 사용하여 A에 회신
+  - A의 MAC주소 (유니캐스트)로 전송된 프레임
+- A는 정보가 오래 될 때까지  ARP 테이블에 IP-MAC 주소 쌍을 캐시(저장)함 (시간초과)
+  - 소프트 상태 : 새로 고쳐지지 않는 한 시간초과되는 정보(사라짐)
+- ARP는 plug-and-play : 노드는 네트워크 관리자의 개입 없이 ARP 테이블을 생성 (스스로)
+  - Plug-and-Play : 스스로 인식할 수 있는 장치 (꽂자마자[Plug] 곧바로 이용할 수 있는[Play])
+
+
+
+## 주소지정 : 다른 LAN으로 라우팅
+
+![6-47](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-47.png)
+
+- 연습(walkthrough) : **A에서 B로 R을 통해 데이터그램 전송** 
+  - 주소 지정에 집중 - IP (데이터그램) 및 MAC 계층 (프레임)
+  - A가 B의 IP주소를 알고 있다고 가정
+  - A가 첫번째 홉 라우터의 IP주소를 알고 있다고 가정하고 R (어떻게?)
+  - R의 MAC 주소를 알고 있다고 가정 (어떻게?)
+
+![6-48-52](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-48-52.gif)
+
+- A에서는 IP 소스 A, 목적지 B로 IP 데이터 그램을 생성
+- A는 목적지 주소로 R의 MAC 주소를 갖는 링크 계층 프레임을 생성하고, 프레임은 A-to-B IP 데이터 그램을 포함
+-  
+- A에서 R로 보낸 프레임
+- R에서 수신 된 프레임, 제거 된 데이터 그램, IP에 전달 된 프레임
+-  
+- R은 IP 소스 A, 목적지 B로 데이터 그램을 전달
+- R은 목적지 주소로 B의 MAC 주소를 갖는 링크 계층 프레임을 생성하고, 프레임은 A-to-B IP 데이터 그램을 포함
+-  
+- R은 IP 소스 A, 목적지 B로 데이터 그램을 전달
+- R은 B의 MAC 주소가 dest 인 링크 계층 프레임을 생성하고, 프레임은 A-to-B IP 데이터 그램을 포함
+
+
+
 
 
 
