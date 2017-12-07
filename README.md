@@ -1203,7 +1203,7 @@
     - 지연
     - 단일 장애 지점(마스터)
 
-![6-38](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-38.gif)
+![6-37](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-37.gif)
 
 - 토큰 전달 - 순서를 가지고 token으로 passing 하는 방법 (Token이 돌면서 passing 하거나 data를 전송하거나)
   - 제어 토큰은 한 노드에서 다음 노드로 순차전달을 진행
@@ -1212,3 +1212,85 @@
     - 토큰 오버헤드
     - 지연
     - 단일 장애 지점(토큰)
+
+
+
+## 케이블 접근 네트워크
+
+![6-38](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-38.gif)
+
+- **다중** 40Mbps 다운 스트림(broadcast) 채널
+  - 단일 CMTS(Cable Modem Termination System) 가 채널로 전송
+- **여러개**의 30Mbps 업스트림 채널
+  - **다중 액세스** : 모든 사용자가 특정 업스트림 채널 시간 슬롯(다른 채널 할당)
+
+![6-39](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-39.png)
+
+- **DOCSIS** : 케이블 서비스 인터페이스 명세
+- 업스트림, 다운스트림 주파수 채널을 통한 FDM
+- TDM 업스트림 : 일부 슬롯은 할당되고 일부 슬롯은 경합이 있음
+  - 다운스트림 MAP 프레임 : 업스트림 슬롯 할당
+  - 선택된 슬롯에서 업스트림 슬롯(및 데이터) 전송 랜덤 액세스 (바이너리 백오프) 요청
+
+
+
+## MAC 프로토콜 요약
+
+- 시간, 주파수 또는 코드에 의한 **채널 파티셔닝**
+  - 시간 분할, 주파수 분할
+- 무작위 액세스 (동적)
+  - ALOHA, S-ALOHA, CSMA, CSMA/CD
+  - 캐리어 감지 : 일부 기술(유선), 다른 기술(무선)
+  - CSMA/CD 는 이더넷을 사용
+  - CSMA/CA 는 802.11 사용
+- 교대로
+  - 중앙 사이트에서 폴링, 토큰 전달
+  - 블루투스, FDDI(Fiber Distributed Data Interface) , 토큰 링
+
+
+
+## 6.4 LANs - 주소지정, ARP
+
+
+
+## MAC 주소 그리고 ARP
+
+- 32비트 IP 주소
+  - 인터페이스를 위한 네트워크 레이어 주소
+  - 계층 3 (네트워크 계층) 전달에 사용
+- MAC (또는 LAN 또는 물리적 또는 이더넷) 주소
+  - 기능 : **하나의 인터페이스에서 다른 물리적으로 연결된 인터페이스로 프레임을 가져오기위해 '로컬'로 사용됨**
+    **(IP 주소 지정 의미에서 동일한 네트워크)**
+  - NIC ROM에서 48비트 MAC주소(대부분의 LAN용)가 구워짐(burned)
+  - 때때로 소프트웨어 설정이 가능
+- 1A-2F-BB-76-09-AD
+  - 16진법 (기수16) 표기법, 각각의 숫자는 4비트를 나타냄
+
+
+
+## LAN 주소 그리고 ARP
+
+![6-43](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-43.png)
+
+- LAN 상의 각 어댑터에는 고유한 LAN주소가 있음
+
+
+
+## LAN 주소 (more)
+
+- IEEE(Institute of Electrical and Electronics Engineers)에서 관리하는 MAC주소 할당
+- 제조업체가 MAC 주소 공간의 일부를 구입 (고유성을 보장하기 위해)
+- 유추(analogy)
+  - MAC 주소 : 사회 보장 번호 (Social Security Number) 와 같음 (주민등록번호와 같음)
+  - IP 주소 : 우편 주소 (서브넷 마스크에 의해서 변경 될 수 있음)
+- MAC 플랫 주소 - 이식성 (portability)
+  - LAN카드를 한 LAN에서 다른 LAN으로 이동할 수 있음
+- 휴대용 IP 계층 주소
+  - 주소는 노드가 연결된  IP 서브넷에 따름
+
+
+
+
+
+
+
