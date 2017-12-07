@@ -1645,15 +1645,30 @@
 
 
 
+## 6.6 Data center networking
 
+## 데이터 센터 네트워크
 
+- 10~100개의 호스트가 긴밀하게 연결되어 근접해있음
+  - 전자 상거래 (예: 아마존)
+  - 컨텐츠 서버 (예: Youtube, Akamai, Apple, Microsoft)
+  - 검색 엔진, 데이터 마이닝 (예 : Google)
+- 과제 (challenges)
+  - 다수의 고객이 다수의 클라이언트를 지원하는 여러개의 애플리케이션
+  - 병렬 균형 조정 로드밸런싱, 프로세싱, 네트워킹, 데이터 병목현상 방지
 
+![6-85](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-85.gif)
 
+- 로드 밸런서 (load balancer) : 애플리케이션 계층 라우팅
+  - 외부 클라이언트 요청 수신
+  - 데이터 센터 내에서 워크로드(warkload)를 처리
+  - 외부 클라이언트에 결과를 반환 (클라이언트에서 데이터 센터 내부 숨김)
 
+![6-86](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-86.png)
 
-
-
-
+- 스위치, 랙(racks) 간 풍부한 상호연결
+  - 랙(racks) 간 처리량 증가 (다중 라우팅 경로 기능)
+  - 중복을 통해 증가된 신뢰성
 
 
 
