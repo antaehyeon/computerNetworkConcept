@@ -1457,19 +1457,45 @@
 
 
 
+## 스위치 : Self-learning
+
+![6-64](/Users/hyeon/computerNetworkConcept/image/6-64.gif)
+
+- A가 출발지, A'가 도착지
+- 스위치는 인터페이스를 통해 어떤 호스트에 도달할 수 있는지를 학습
+  - 프레임 수신시 스위치가 송신자의 "학습" 위치 : 수신 LAN 세그먼트
+  - 스위치 테이블에 보낸 사람/위치 쌍을 기록
 
 
 
+## 스위치 : 프레임 필터링 / 전달
+
+1. 수신 링크, 송신 호스트의 MAC 주소 기록
+
+2. MAC 목적지 주소를 이용한 인덱스 스위치 테이블
+
+3. ```if entry found for destination
+   if entry found for destination
+    then {
+    if destination on segment from which frame arrived
+          then drop frame
+          else forward frame on interface indicated by entry
+          }   
+          else flood  /* forward on all interfacesexcept arriving
+          				  interface */
+   ```
+
+   ​
+
+## self-learning, 포워딩 : 예시 
+
+![6-66](/Users/hyeon/computerNetworkConcept/image/6-66.gif)
 
 
 
-
-
-
-
-
-
-
+- 프레임 대상, A' 알 수 없는 위치 : 홍수(flood)?
+- 목적지 알려진 위치 : 선택적으로 하나의 링크만 전송
+- 보낼 때 정보를 계속 적으면서 table 을 구성
 
 
 
