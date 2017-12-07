@@ -1345,6 +1345,130 @@
 
 
 
+## LANs - Ethernet
+
+## Ethernet
+
+![6-54](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-54.png)
+
+- 지배적인(dominant) 유선 LAN 기술
+  - 단일 칩, 다중 속도
+  - 처음으로 널리 사용되는 LAN 기술
+  - 더 간단하고 저렴한
+  - 스피드 레이스 유지 : 10Mbps ~ 10Gbps
+
+
+
+## Ethernet : 물리적인 topology
+
+![6-55](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-55.png)
+
+- **버스** : 90년대 중반까지 인기 - 동축(coaxial) 케이블
+  - 동일한 충돌 도메인에 있는 모든 노드 (서로 충돌할 수 있음)
+- **스타(star)** : 오늘 우세
+  - 중앙의 활성 스위치
+  - 각 "스포크(spoke)"는 (별도의) 이더넷 프로토콜을 실행 (노드는 서로 충돌하지 않음)
+
+
+
+## 이더넷 프레임 구조 (기말 1문제)
+
+![6-56](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-56.png)
+
+- 총 몇Byte 인지, Preamble(8byte), source address(6byte), dest address(6byte), IP(20byte), TCP(20byte), 1460Byte
+- 송신 어댑터는 이더넷 프레임에 IP 데이터 그램(또는 다른 네트워크 계층 프로토콜 패킷)을 캡슐화함
+- 전문 - synchronize를 통해서 하드웨어간의 정보를 구성, 속도 동기화
+  - 패턴이 1010 1010인 7바이트와 패턴 1010 1011이 있는 1 바이트 수신기
+  -  수신기, 송신기 클록 속도 동기화에 사용
+
+
+
+## 이더넷 프레임 구조 (more)
+
+- **주소** : 6바이트 원본, 목적지 MAC 주소
+  - 어댑터가 일치하는 대상 주소(예 : ARP 패킷)또는 브로드캐스트 주소(예 : ARP 패킷)를 수신하는 경우, 프레임은 프레임 계층 프로토콜로 데이터를 전달
+  - 그렇지 않으면, 어댑터가 프레임을 버림
+- **유형(type)** : 상위 계층 프로토콜을 나타냄 (대부분 IP이지만 Novell IPX, AppleTalk와 같은 다른 프로토콜도 가능)
+- **CRC** : 수신기에서 순환 중복 검사
+  - 오류 감지 : 프레임이 떨어짐
+
+
+
+## 이더넷 : 비 신뢰, 비 연결
+
+- **연결할 수 없는** : NIC 송수신간에 핸드셰이킹이 발생하지 않음
+- **신뢰할 수 없는** : NIC 수신은 NIC 전송으로 acks 또는 nacks 를 보내지 않음
+  - 손실된 프레임(예:TCP)이 더 높은 계층(예:TCP)을 사용하는 경우에만 손실된 프레임의 데이터가 복구되며, 그렇지 않을경우 손실됨
+- 이더넷 MAC 프로토콜 : **이진 백 오프**가있는 슬롯된 **CSMA / CD**
+
+
+
+## 802.3 이더넷 표준 : 링크 및 물리적 레이어
+
+![6-59](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-59.png)
+
+- 다양한 이더넷 표준
+- 공통 MAC 프로토콜 및 프레임 형식
+- 다른 속도 : 2Mbps, 10Mbps, 100Mbps, 1Gbps, 10Gbps, 40Gbps
+- 다른 물리층 매체 : 광섬유, 케이블
+
+
+
+## 6.4 LANs - 스위치 및 VLANS
+
+## 이더넷 스위치
+
+- 링크 계층 장치 : 적극적인 역할 수행
+  - 저장, 전달 이더넷 프레임
+  - 프레임의 MAC주소를 검사하고 프레임이 세그먼트에 전달될 때 프레임을 일대일 링크로 전달합니다. 프레임이 세그먼트에 액세스 하려면 CSMA/SSCD를 사용합니다.
+- 투명한
+  - 호스트는 스위치의 존재를 인식하지 못함
+- Plug-and-Play, Self-Learning
+  - 스위치를 구성할 필요가 없음
+
+
+
+## 스위치 : 여러 동시(simultaneous) 전송 
+
+![6-62](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-62.png)
+
+- 호스트는 전용 스위치를 직접 연결
+- 패킷들 버퍼 전환
+- 각 수신링크에서 사용되는 이더넷 프로토콜이지만 충돌은 없음; 전이중
+  - 각 링크는 자체 충돌 도메인
+- **스위칭** : A-to-A' 및 B-to-B' 는 충돌없이 동시에 전송할 수 있음
+
+
+
+## 스위치 포워딩 테이블(forwarding table)
+
+![6-62](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-62.png)
+
+- Q. 스위치가 A' 를 인터페이스 4를 통해 연결할 수 있고, B'를 인터페이스 5를 통해 연결할 수 있음을 어떻게 알 수 있는가?
+- A. 각 스위치는 **스위치 테이블**을 가지고 있고, 각 항목은 다음과 같다
+  - 호스트의 MAC 주소, 호스트에 도달하는 인터페이스, 타임 스탬프
+  - 라우팅 테이블 처럼 보임
+- Q. 항목이 어떻게 만들어지고, 스위치 테이블에서 유지 관리됩니까?
+  - 라우팅 프로토콜 같은 것
+- Switch Table에서 중점적으로 봐야할 것은
+  - Table에 대한 정보가 한 set로 되서 어떻게 empty 상태에서 만들어지는가
+  - 어떻게 entry가 created 되는가
+  - self Running !
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
