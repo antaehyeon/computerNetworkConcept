@@ -370,7 +370,7 @@
 
 ## OpenFlow 예제
   * Example : 호스트 H5 및 H6의 데이터그램을 SI를 통해 H3 또는 H4로 보내야하며 거기에서 S2까지 보내야합니다.
-  ![4-76.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-76.png)
+      ![4-76.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-76.png)
 
 ## Chapter 4 : 완료!
   * Q. 어떻게 전달 테이블 (대상 기반 전달) 또는 흐름 테이블 (일반 전달) 계산합니까?
@@ -1135,11 +1135,15 @@
 
 ## CSMA 충돌(collision)
 
-- **충돌은 여전히 발생할 수 있음** : 전파 지연은 두 노드가 서로의 전송물들을 수없이 의미
+![6-30](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-30.png)
+
+- 충돌은 여전히 발생할 수 있음** : 전파 지연은 두 노드가 서로의 전송물들을 수없이 의미
 - **충돌** : 전체 패킷 및 전송 시간 낭비
   - 거리 및 전파 지연(propagation delay)이 충돌 확률을 결정하는 역할을 함
 
 ## CSMA/CD (충돌 감지)
+
+![6-32](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-32.png)
 
 - CSMA/CD : 캐리어 감지, CSMA와 같은 지연
   - 단시간 내에 충돌이 감지됨
@@ -1152,14 +1156,59 @@
 
 
 
+## 이더넷 CSMA/CD 알고리즘
+
+1. NIC는 네트워크 계층에서 데이터그램을 받아 프레임을 생성
+2. NIC가 채널 유휴를 감지하면, 프레임 전송을 시작하고 NIC가 사용중인 채널을 감지하면 채널이 유휴상태가 될때까지 기다린다음 전송
+3. NIC가 다른 전송을 감지하지 않고 전체 프레임을 전송할 경우 NIC가 프레임으로 이루어짐
+4. NIC가 전송신호를 전송하는 동안 다른 전송을 감지하는 경우, 중단하고 신호를 전송
+5. 중단 후, NIC는 **이진수(지수)백업**을 시작
+   - 중단 후 NIC는 K (0,1,2, … , 2^m-1) 에서 무작위로 선택하고 NIC가 K*512 bit 동안 대기 후 2단계로 리턴
+   - 더 많은 충돌이 발생한다면 더 긴 백업 간격을 가짐
+
+- 이더넷에서 백업을 하는 부분이 알고리즘으로 구현되어 있음
 
 
 
+## CSMA/CD 장점(기말)
+
+- T-prop = LAN의 2 노드 간 최대 지연시간
+-  t-trans = 최대 크기의 프레임 전송시간
+- 효율성은 1로
+  - t-prop가 0이 될때
+  - t-trans가 무한대로 이동함에 따라
+- **ALOHA보다 우수한 성능을 제공, 간단하고 저렴하며 분산되어있음**
 
 
 
+## 교대(Taking turns) MAC 프로토콜
 
+- 채널 파티셔닝(partitioning) MAC 프로토콜
+  - 고부하에서 채널을 효율적이고 공평하게 공유
+  - 낮은 부하에서 비효율적 : 채널 액세스 지연, 1개의 활성노드만 할당된 1/N 대역폭
+- 랜덤 액세스 MAC 프로토콜
+  - 낮은 부하에서 효율적 : 단일 노드가 채널을 최대한 활용
+  - 높은 로드 : 충돌 오버 헤드
+    - 많은 충돌이 일어나므로 Backup을 진행하는 횟수가 증가하여 실제로 보내는 데이터가 적음
+- 교대(taking turns) 프로토콜
+  - 두 세계의 최고를 찾으십시오!
 
+![6-36](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-36.gif)
 
+- 폴링(palling) - 순서대로 보내주는 것
+  - 마스터 노드는 슬레이브 노드가 차례대로 전송하도록 '초대(invite)'함
+  - 일반적으로 '멍청한(dumb)' 슬레이브는 장치와 함께 사용됨
+  - 우려사항(concerns)
+    - 폴링 오버헤드
+    - 지연
+    - 단일 장애 지점(마스터)
 
+![6-38](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-38.gif)
 
+- 토큰 전달 - 순서를 가지고 token으로 passing 하는 방법 (Token이 돌면서 passing 하거나 data를 전송하거나)
+  - 제어 토큰은 한 노드에서 다음 노드로 순차전달을 진행
+  - 토큰 메시지
+  - 우려 사항
+    - 토큰 오버헤드
+    - 지연
+    - 단일 장애 지점(토큰)
