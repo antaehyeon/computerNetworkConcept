@@ -1459,7 +1459,7 @@
 
 ## 스위치 : Self-learning
 
-![6-64](/Users/hyeon/computerNetworkConcept/image/6-64.gif)
+![6-64](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-64.gif)
 
 - A가 출발지, A'가 도착지
 - 스위치는 인터페이스를 통해 어떤 호스트에 도달할 수 있는지를 학습
@@ -1489,13 +1489,179 @@
 
 ## self-learning, 포워딩 : 예시 
 
-![6-66](/Users/hyeon/computerNetworkConcept/image/6-66.gif)
+![6-66](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-66.gif)
 
 
 
 - 프레임 대상, A' 알 수 없는 위치 : 홍수(flood)?
 - 목적지 알려진 위치 : 선택적으로 하나의 링크만 전송
 - 보낼 때 정보를 계속 적으면서 table 을 구성
+
+
+
+## 상호연결 스위치
+
+- 자가 학습 스위치를 함께 연결할 수 있음
+
+![6-67](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-67.png)
+
+- Q. A에서 G로 보내기 - S1이 S4 및 S3을 통해 G로 전달되는 프레임을 어떻게 알 수 있는가?
+- 자가 학습(self learning) - 단일 스위치의 경우와 똑같이 작동
+
+
+
+## 자가 학습 멀티 스위치 예제
+
+- C가 프레임을 I로 보내면 C에 응답
+
+![6-67](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-67.png)
+
+- Q : S1, S2, S3, S4에서 스위치 테이블 및 패킷 전달 표시
+
+
+
+## 기관(Institutional) 네트워크
+
+![6-69](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-69.png)
+
+
+
+## 스위치 vs 라우터
+
+![6-70](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-70.png)
+
+- 둘 다 store-and-forward
+  - **라우터(routers)** : 네트워크 계층 장치 (네트워크 계층 헤더 검사)
+  - **스위치(switches)** : 링크 계층 장치 (링크 계층 헤더 검사)
+- 둘 다 forwarding table을 가지고 있음
+  - **라우터(routers)** : 라우팅 알고리즘, IP주소를 사용하여 테이블 계산
+  - **스위치(switches)** : 범람, 학습, MAC 주소를 사용하여 전달 테이블 학습
+
+
+
+## VLANs : 동기부여 (motivation)
+
+![6-71](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-71.png)
+
+- 중히 여기다(consider)
+  - CS 사용자가 사무실을 EE로 이동하지만 CS스위치에 연결하기를 원합니까?
+  - 단일 방송 도메인
+    - 모든 레이어-2브로드캐스트 트래픽(ARP, DHCP, 대상 MAC주소의 알려지지 않은 위치)은 전체 LAN을 교차해야함
+    - 보안 수준 향상, 효율성 문제
+
+
+
+## VLANs
+
+> Virtual Local Area Network
+>
+> VLAN기능을 지원하는 스위치는 단일 물리적 LAN인프라를 통해 여러 가상 LAN을 정의하도록 구성할 수 있습니다.
+
+- **포트 기반 VLAN** : 스위치 포트를 그룹화하여 (스위치 관리 소프트웨어로) 단일 물리적 스위치
+
+  ![6-72](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-72.png)
+
+- ... 여러 개의 가상 스위치로 작동
+
+
+
+## 포트 기반 VLAN
+
+![6-73](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-73.gif)
+
+- 트래픽 격리** : 포트 1-8 사이의 프레임은 포트 1-8에만 도달 할 수 있음
+  - 또한 스위치 포트가 아닌 엔드 포인트의 MAC 주소를 기반으로 VLAN을 정의 할 수 있음
+- **동적 멤버십** : VLAN간에 포트를 동적으로 할당 할 수 있습니다.
+- **VLANS 간 전송** : 라우팅을 통해 완료 (별도의 스위치와 동일)
+  - 실제로 벤더들은 결합 된 스위치와 라우터를 판매
+
+
+
+## 여러 스위치에 걸친 VLAN
+
+![6.74](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6.74.png)
+
+- 트렁크 포트 : 여러 물리적 스위치를 통해 정의 된 VLANS간에 프레임 전송
+  - 스위치간에 VLAN 내에서 전달되는 프레임은 바닐라(vanilla) 802.1 프레임 X (VLAN ID 정보를 전달해야 함)
+  - 802.1q 프로토콜은 트렁크 포트간에 전달 된 프레임에 대한 추가 헤더 필드를 추가 / 제거
+
+
+
+## 802.1Q VLAN frame format (알 필요 없음)
+
+## 6.5 링크 가상화 : MPLS
+
+## 멀티 프로토콜 라벨 스위칭 (Multiprotocol label switching, MPLS)
+
+![6-77](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-77.png)
+
+- 초기 목표 : 고정 길이 레이블을 사용하는 고속 IP 전달 (IP 주소 대신)
+  - 고정 길이 식별자를 사용하여 빠른 검색 (최단 접두어(shortest prefix) 일치가 아닌)
+  - 가상 회로 (Virtual Circuit, VC) 접근법에서 아이디어 차용
+  - IP 데이터그램은 여전히 IP주소를 유지
+- Virtual Circuit 을 가지고 어떻게 라우팅이 되는것인지 뒤에서 살펴볼 것
+- MPLS 라우터를 사용했을 때 MPLS header 을 추가하는 형식
+- MPLS 헤더 포맷을 외울필요는 없음 기본 개념만 이해
+- **다른 ITP 302.3 (?) , Ethernet Frame Format 은 외우라고 했고 물어볼 수 있음(기말)**
+
+
+
+## MPLS 지원 라우터
+
+- 레이블 교환 라우터
+- 라벨 값만을 기준으로 패킷을 전달 (IP주소를 검사하지 않음)
+  - IP 전달 테이블과 별개의 MPLS 포워딩 테이블
+- 유연성(flexibility) : MPLS 포워딩 결정은 IP의 포워딩 결정과 다를 수 있다
+  - 목적지 및 출발지 주소를 사용하여 흐름을 동일한 대상으로 다르게 경로지정 (트래픽 엔지니어링)
+  - 링크가 실패할 경우 신속하게 경로 재지정 : 사전 계산된 백업 경로(VolP에 유용)
+
+
+
+## MPLS 대 IP 경로
+
+![6-79](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-79.png)
+
+- IP 라우팅(routing) : 목적지 주소만으로 결정된 목적지까지의 경로
+
+![6-80](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-80.png)
+
+- MPLS 라우팅 : 목적지까지의 경로는 소스 및 목적지 주소를 기반으로 할 수 있음
+- 빠른 경로 변경 : 링크 실패시 백업 경로 사전 계산
+
+
+
+## MPLS 신호
+
+![6-81](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-81.gif)
+
+- MPLS라우팅에 사용되는 정보를 전달하기 위해 OSPF, IS-IS링크 상태의 홍수(flooding) 프로토콜을 수정
+- MPLS라우터는 RSVP-T신호 프로토콜을 사용하여 다운 스트림 라우터에서 MPLS포워딩을 설정
+
+
+
+## MPLS 포워딩 테이블 (forwarding tables) 
+
+![6-82](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-82.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
