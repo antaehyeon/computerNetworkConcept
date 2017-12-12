@@ -66,10 +66,12 @@
 ### 이더넷 케이블 (UTP) - 어떻게 만드는가 (기말5점)
 ![4-22. Ethernet Cable (UTP)](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-22.%20Ethernet%20Cable%20(UTP).png)
   * 해당 라인 순서와 cross cable에 대한부분 숙지
+  * 영어 외우기(T568A, B)
 
-### 라우터 외부 연결
+### 라우터 외부 연결(기말)
 ![4-25. Router external connections](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-25.%20Router%20external%20connections.png)
   * Console Port : configuration 접속포트
+  * 포트에 대한 용어, 위치 알아두기
 
 ## 4-3. IP : Internet Protocl
 1. datagram 포맷
@@ -111,7 +113,7 @@
 ## IP fragmentation, reassembly
 ![4-32. IP fragmentation, reassembly.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-32.%20IP%20fragmentation,%20reassembly.png)
 
-## IP addressing: introduction
+## IP addressing: introduction(기말, 서브넷에 대해 알아두기)
 ![4-34. IP addressing.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-34.%20IP%20addressing.png)
   * IP address
     32-bit 호스트 식별자, 라우터 인터페이스
@@ -150,7 +152,7 @@
       * 해당 서브넷은 6개로 구성
       * 가운데의 3개의 선은 별도의 Subnet으로 구성됨
 
-  ## Class A, B, C, D, and E IP Address
+  ## Class A, B, C, D, and E IP Address(기말)
   ![4-39. Class A, B, C, D, and E IP Address.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-39.%20Class%20A,%20B,%20C,%20D,%20and%20E%20IP%20Address.png)
   * 해당 IP Address를 통해서 각 IP의 Class를 파악할 수 있음
   * 클래스 D 주소는 멀티캐스트 그룹에 사용되므로, 네트워크 및 호스트 주소를 분리하기 위해 octets나 bit를 할당할 필요가 없음
@@ -164,7 +166,7 @@
   * 127.x.x.x 주소 범위는 루프백 주소로 예약되어 있음
   * 테스트 및 진단 목적으로 사용
 
-  ## Reserved IP Addressing
+  ## Reserved IP Addressing(기말)
   ![4-41. Reserved IP Addresses](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-41.%20Reserved%20IP%20Addresses.png)
   * 특정 호스트 주소는 예약되어 있으며 네트워크 장치에 할당 할 수 없음
   * 모든 호스트 비트 위치에 2진 O (binary Os)가 있는 IP주소는 네트워크 주소용으로 예약되어 있음
@@ -179,7 +181,7 @@
   * A Class는 어떤것이 사설주소인가? 알아야 됨!
   * 해당 그림은 표준으로 세워놓은 IP주소
 
-  ## IP addressing : CIDR
+  ## IP addressing : CIDR(기말-원리)
   ![4-43. IP addressing CIDR.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-43.%20IP%20addressing%20CIDR.png)
   * CIDR : Classless InterDomain Routing - 클래스 없는 InterDomain 라우팅
     * 임의의 길이의 서브넷 부분 주소
@@ -210,7 +212,7 @@
   * 그러면 IP를 여러개 받음
   * request가 왜 의미를 가지는지
 
-## DHCP client-server scenario
+## DHCP client-server scenario(기말-순서)
 ![4-46. DHCP client-server scenario](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-46.%20DHCP%20client-server%20scenario.png)
 
 ![4-47. DHCP client-server scenario.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-47.%20DHCP%20client-server%20scenario.gif)
@@ -249,7 +251,7 @@
     * DNS 관리
     * 도메인 이름 할당, 분쟁 해결
 
-## NAT : network address translation
+## NAT : network address translation(기말-source, dest)
 ![4-55. NAT.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-55.%20NAT.png)
 
 * 로컬 네트워크를 떠나는 모든 데이터그램에는 동일한 단일 소스 NAT IP주소가 있음 (138.76.29.7, 다른 소스 포트번호)
@@ -417,7 +419,7 @@
   * 각각의 good 기준이 다른점을 파악
     * 서울에서 부산으로 갈때 라우팅 경로의 차이가 생길 수 있음
 
-  ## 네트워크의 추상화 그래프
+  ## 네트워크의 추상화 그래프(연습문제 나오면 풀어보기)
   * 그래프 추상화(graph abstraction)는 P2P와 같은 다른 네트워크 환경에서 유용하며, 여기서 N은 피어세트이고 E는 TCP연결 세트
 
   ## 그래프 추상화 : 비용
@@ -469,14 +471,14 @@
     * AS 사이의 라우팅
     * 게이트웨이는 도메인간 라우팅(intra-도메인 라우팅도 물론)
 
-  ## 상호연결된 ASes
+  ## 상호연결된 ASes (문제풀어보기)
   ![5-15.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-15.png)
   * 인트라 및 AS간 라우팅 알고리즘으로 구성된 전달 테이블(forwarding table)
     * 내부 AS 라우팅은 AS 내 목적지에 대한 항목을 결정
     * 외부 목적지에 대한 AS 간 및 내부 AS 결정항목
     * 3개의 ASes를 LG, SK, KT라 가정하고 각각의 라우터에서 forwarding table 을 업데이트 하는 방식
 
-  ## Inter-AS 작업
+  ## Inter-AS 작업 
   ![5-16.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-16.png)
   * AS1 라우터가 AS1 외부로 향하는 데이터그램을 받았다 가정
   * 라우터는 게이트웨이 라우터로 패킷을 전달해야 하지만 어느 라우터를 사용해야 하는가?
@@ -485,7 +487,7 @@
     * AS1의 모든 라우터에 도달 가능성 정보를 전파(도달할 수 있는 정보를 가지고 있어야 함)
   * AS간 라우팅 작업
 
-  ## Intra-AS 라우팅
+  ## Intra-AS 라우팅 (기말-차이점)
   * 내부 게이트웨이 프로토콜(interior gateway protocols, IGP)이라고 함
   * 가장 일반적인 intra-AS 라우팅 프로토콜
     * RIP : 라우팅 정보 프로토콜 (기말-교수님 출제성향)
@@ -536,7 +538,7 @@
   * 서브넷이 인터넷의 나머지 부분에 자신의 존재를 알리는 것을 허용 (나 여기있다)
   * OGP, BGP 풀네임이나 eBGP 또는 iBGP 연습문제 참고
 
-  ## eBGP, iBGP 연결
+  ## eBGP, iBGP 연결(기말-경로)
   ![5-24.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-24.gif)
   * eBGP인지, iBGP인지
 
@@ -613,7 +615,7 @@
   * 시행 할 정책 : X는 X를 통해 B에서 C로 라우팅하고 싶지 않음
     * 그래서 X는 B에게 C경로를 광고하지 않을 것
 
-  ## 왜 intra-AS와 inter-AS 라우팅은 다른가?
+  ## 왜 intra-AS와 inter-AS 라우팅은 다른가? (기말- 정책,규모,성능 외울것)
   * 정책
     * inter-AS : 관리자는 트래픽이 라우팅되는 방식, 네트워크를 통해 라우팅되는 방식을 제어하려고 함
     * intra-AS : 단일 관리자, 정책 결정 필요 없음
@@ -730,7 +732,7 @@
     * 포트 상태 : 컨트롤러에 포트 변경을 알림
   * 다행하게도, 네트워크 운영자는 OpenFlow메시지를 직접 생성/전송하여 스위치를 프로그래밍하지 않습니다. 대신 컨트롤러에서 더 높은 수준의 추상화를 사용함
 
-  ## SDN : 컨트롤 / 데이터 플레인 상호 작용 예제
+  ## SDN : 컨트롤 / 데이터 플레인 상호 작용 예제 (기말 전체네트워크 순서HTTP, DHCP, DNS, TCP, RIP? ARP?)
   ![5-53.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-53.png)
     1. S1, OpenFlow 포트 상태 메시지를 사용하여 컨트롤러에게 링크 실패 알림을 보냄
     2. SDN 컨트롤러가 OpenFlow 메세지를 수신하고 링크 상태 정보를 업데이트
@@ -803,7 +805,7 @@
   * 용어들에 대한 정의를 명확히 해야 표준을 정할 수 있음
   * 그래서 용어를 물어보는 것(기말)
 
-  ## SNMP 프로토콜
+  ## SNMP 프로토콜(기말-풀네임)
   * MIB정보, 명령을 전달하는 두가지 방법
       ![5-62.gif](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-62.gif)
 
@@ -812,7 +814,7 @@
   ## SNMP 프로토콜 : 메시지 타입
   ![5-63.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-63.png)
 
-  ## SNMP 프로토콜 : 메세지 형식
+  ## SNMP 프로토콜 : 메세지 형식(rlakf)
   ![5-64.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-64.png)
 
   * SNMP 가 무엇이다 정도만 알면됨, 외울필요 없음
@@ -973,7 +975,7 @@
 
 
 
-## 6-3. 다중 접근 프로토콜
+## 6-3. 다중 접근 프로토콜(기말-이거나옴?어떻게나오는지는..)
 
 ## 다중 액세스 링크, 프로토콜
 
@@ -1015,7 +1017,7 @@
 
 
 
-## MAC 프로토콜 : 분류법(taxonomy)
+## MAC 프로토콜 : 분류법(taxonomy) - 기말
 
 - 3가지 broad 클래스들
   - 채널 분할(파티셔닝, partitioning)
@@ -1029,7 +1031,7 @@
 
 
 
-## 채널 분할 MAC 프로토콜 : TDMA
+## 채널 분할 MAC 프로토콜 : TDMA - 기말 풀네임
 
 ![6-21](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-21.png)
 
@@ -1041,7 +1043,7 @@
 
 
 
-## 채널 분할 MAC 프로토콜 : FDMA
+## 채널 분할 MAC 프로토콜 : FDMA - 기말 풀네임
 
 ![6-22](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-22.png)
 
@@ -1070,7 +1072,7 @@
 
 
 
-## 슬롯이 있는 ALOHA
+## 슬롯이 있는 ALOHA (기말 ALOHA의 원리 알아두기)
 
 - 가정
   - 모든 프레임이 같은 크기
@@ -1173,7 +1175,7 @@
 ## CSMA/CD 장점(기말)
 
 - T-prop = LAN의 2 노드 간 최대 지연시간
--  t-trans = 최대 크기의 프레임 전송시간
+- t-trans = 최대 크기의 프레임 전송시간
 - 효율성은 1로
   - t-prop가 0이 될때
   - t-trans가 무한대로 이동함에 따라
@@ -1181,7 +1183,7 @@
 
 
 
-## 교대(Taking turns) MAC 프로토콜
+## 교대(Taking turns) MAC 프로토콜(기말)
 
 - 채널 파티셔닝(partitioning) MAC 프로토콜
   - 고부하에서 채널을 효율적이고 공평하게 공유
@@ -1268,7 +1270,7 @@
 
 
 
-## LAN 주소 그리고 ARP
+## LAN 주소 그리고 ARP(기말에 ARP나왔다함)
 
 ![6-43](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-43.png)
 
@@ -1307,7 +1309,7 @@
 
 - A가 B에게 데이터 그램을 보내려고 함
   - B의 MAC주소가 A의 ARP 테이블에 없음
--  A는 B의 IP주소를 포함하는 ARP 쿼리 패킷을 **브로드캐스트**함
+- A는 B의 IP주소를 포함하는 ARP 쿼리 패킷을 **브로드캐스트**함
   - 목적지 MAC의 주소 = FF-FF-FF-FF-FF-FF
   - LAN상의 모든 노드는 ARP쿼리를 수신
 - B는 ARP 패킷을 수신하고 B의 MAC 주소를 사용하여 A에 회신
@@ -1333,13 +1335,13 @@
 
 - A에서는 IP 소스 A, 목적지 B로 IP 데이터 그램을 생성
 - A는 목적지 주소로 R의 MAC 주소를 갖는 링크 계층 프레임을 생성하고, 프레임은 A-to-B IP 데이터 그램을 포함
--  
+- ​
 - A에서 R로 보낸 프레임
 - R에서 수신 된 프레임, 제거 된 데이터 그램, IP에 전달 된 프레임
--  
+- ​
 - R은 IP 소스 A, 목적지 B로 데이터 그램을 전달
 - R은 목적지 주소로 B의 MAC 주소를 갖는 링크 계층 프레임을 생성하고, 프레임은 A-to-B IP 데이터 그램을 포함
--  
+- ​
 - R은 IP 소스 A, 목적지 B로 데이터 그램을 전달
 - R은 B의 MAC 주소가 dest 인 링크 계층 프레임을 생성하고, 프레임은 A-to-B IP 데이터 그램을 포함
 
@@ -1379,7 +1381,7 @@
 - 송신 어댑터는 이더넷 프레임에 IP 데이터 그램(또는 다른 네트워크 계층 프로토콜 패킷)을 캡슐화함
 - 전문 - synchronize를 통해서 하드웨어간의 정보를 구성, 속도 동기화
   - 패턴이 1010 1010인 7바이트와 패턴 1010 1011이 있는 1 바이트 수신기
-  -  수신기, 송신기 클록 속도 동기화에 사용
+  - 수신기, 송신기 클록 속도 동기화에 사용
 
 
 
@@ -1450,7 +1452,7 @@
   - 라우팅 테이블 처럼 보임
 - Q. 항목이 어떻게 만들어지고, 스위치 테이블에서 유지 관리됩니까?
   - 라우팅 프로토콜 같은 것
-- Switch Table에서 중점적으로 봐야할 것은
+- Switch Table에서 중점적으로 봐야할 것은(기말)
   - Table에 대한 정보가 한 set로 되서 어떻게 empty 상태에서 만들어지는가
   - 어떻게 entry가 created 되는가
   - self Running !
@@ -1551,7 +1553,7 @@
 
 
 
-## VLANs
+## VLANs(기말-용어)
 
 > Virtual Local Area Network
 >
@@ -1587,11 +1589,11 @@
 
 
 
-## 802.1Q VLAN frame format (알 필요 없음)
+## 802.1Q VLAN frame format (알 필요 없음) - 기말 802.1은 알아두기
 
 ## 6.5 링크 가상화 : MPLS
 
-## 멀티 프로토콜 라벨 스위칭 (Multiprotocol label switching, MPLS)
+## 멀티 프로토콜 라벨 스위칭 (Multiprotocol label switching, MPLS) - 기말, 풀네임쓰는것으로 파악
 
 ![6-77](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/6-77.png)
 
