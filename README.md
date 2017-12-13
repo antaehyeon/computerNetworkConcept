@@ -95,6 +95,16 @@
 * TTL : 최대 남은 홉 수 (각 라우터에서 감소, 128 - 127 - 126 ... 1)
 * upper layer : 데이터를 위로 전달(payload)하는 상위 계층 프로토콜
 * for fragmentation/reassembly (분열/재조립을 위한) : 4Byte = 1Word
+* 버전 번호(ver) : 4**비트**, 데이터그램의 IP프로토콜 버전을 명시
+* 헤더길이(head len) : IPv4의 데이터그램 헤더는 20**바이트**
+* 서비스타입(type of service) : 서로 다른 유형의 IP데이터그램을 구별
+* 데이터그램 길이(length) : 16**비트**, 바이트로 계산한 IP데이터그램(헤더와 데이터) 의 전체길이
+  * 이론상으로는 65535바이트이지만 1500바이트보다 큰경우는 없음
+* 식별자(16비트), 플래그, 단편화 오프셋 : IP단편화와 관련
+* TTL (Time-to-live) : 네트워크에서 데이터그램이 무한히 순환하지 않도록 함
+  * 해당 필드가 0이되면 라우터가 해당 데이터그램을 폐기함
+* 프로토콜(upper layer) : IP데이터그램이 최종목적지에 도착했을 때만 사용, 데이터그램에서 데이터 부분이 전달될 목저지의 전송계층 특정 프로토콜을 의미
+  * 값 6은 TCP, 값 17은 UDP
 
 ## IP fragmentation, reassembly
 ![4-31. IP fragmentation, reassembly](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/4-31.%20IP%20fragmentation,%20reassembly.gif)
@@ -243,6 +253,7 @@
   * 3구역을 보면서 확인함 (각자 나눠주는 부분이 달라짐)
   * 2^9 bit 컴퓨터들에게 assign 할 수 있는 부분
   * ISP's block 11001000 00010111 00010000 00000000 200.23.16.0/20 수정
+  * ICANN, Internet Corporation for Assigned Names and Numbers
 
 ## IP addressing : 마지막 단어
   * ISP는 어떻게 주소를 차단하는가?
@@ -616,14 +627,19 @@
     * 그래서 X는 B에게 C경로를 광고하지 않을 것
 
   ## 왜 intra-AS와 inter-AS 라우팅은 다른가? (기말- 정책,규모,성능 외울것)
-  * 정책
+  * 정책이슈
+      * 특정 AS에서 시작된 트래픽이 다른 특정AS를 통과할 수 없다는 것은 중요할 수 있음
+      * 특정 AS가 다른 AS들 사이에서 어떤 트래픽을 전달할 지 제어하기를 원하는 것 역시 당연한 것
+      * 정책기반 라우팅 결정이 가능하도록 하기위해 BGP가 경로속성을 전달하고 라우팅 정보를 배포하는 제어된 방식을 제공함을 보았음
     * inter-AS : 관리자는 트래픽이 라우팅되는 방식, 네트워크를 통해 라우팅되는 방식을 제어하려고 함
-    * intra-AS : 단일 관리자, 정책 결정 필요 없음
+    * intra-AS : 단일 관리자, 정책 결정 필요 없음(동일한 행정통제하에 있으므로)
   * 규모
+      * 한 AS내에서는 확장성이 중요하지 않음
+      * 하나의 ISP가 너무 커지면 이를 두개의 AS로 분리하고, 이 새로운 두 AS간 라우팅을 수행할 수 있음 (OSPF가 하나의  AS를 여러 영역으로 나눔으로써 계층을 만드는 것을 허용함을 기억할 것)
     * 계층적 라우팅으로 테이블 크기를 줄이고 업데이트 트래픽을 줄임
   * 성능
-    * inter-AS : 성능에 집중할 수 있음
-    * intra-AS : 정책이 성능보다 우세함 (policy > performance)
+    * intra-AS : 성능에 집중할 수 있음
+    * inter-AS : 정책이 성능보다 우세함 (policy > performance)
 
  ## 5-5. SDN 제어 평면
   * 인터넷 네트워크 계층 : 역사적으로 분산형, 라우터 단위방식으로 구현
@@ -814,7 +830,7 @@
   ## SNMP 프로토콜 : 메시지 타입
   ![5-63.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-63.png)
 
-  ## SNMP 프로토콜 : 메세지 형식(rlakf)
+  ## SNMP 프로토콜 : 메세지 형식(기말)
   ![5-64.png](https://github.com/antaehyeon/computerNetworkConcept/blob/master/image/5-64.png)
 
   * SNMP 가 무엇이다 정도만 알면됨, 외울필요 없음
