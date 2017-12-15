@@ -1,4 +1,4 @@
-  <!-- # Sejong Computer Network -->
+﻿  <!-- # Sejong Computer Network -->
 세종대학교 김영복 교수님 컴퓨터 네트워크 기말 정리본 입니다 (PPT 기반, 모르는 내용은 책으로 보충)
 
 ## 4단원. 네트워크 계층 (The Network Layer: Data Plane)
@@ -1688,6 +1688,12 @@
   - 랙(racks) 간 처리량 증가 (다중 라우팅 경로 기능)
   - 중복을 통해 증가된 신뢰성
 
+
+## 기말고사
+- OpenFlow
+- 웹 접속시 순서 (첫번째, 맨끝)
+- Subnet 개념
+- Subnet 계산 (기준 IP주소를 써라)
 
 
 
