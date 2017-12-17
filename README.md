@@ -1695,7 +1695,7 @@
 - Subnet 개념
 - Subnet 계산 (기준 IP주소를 써라)
 - IPv4, IPv6 헤더를 연계하는 문제 (예: IPv4의 checkSum은 IPv6에서 어떤것이 담당하는데 그 해당 필드가 몇 Bit인가?)
-
+- Init Goal 에서 단어문제 하나 나옴 (설명 후 단어 맞추기)
 
 
 
